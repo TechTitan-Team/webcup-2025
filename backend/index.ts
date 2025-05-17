@@ -6,6 +6,7 @@ import compression from 'compression';
 import cors from "cors"
 import path from 'path';
 import userRouter from './src/router/user.router';
+import pageRouter from './src/router/page.router';
 
 const app = express();
 const port = process.env.PORT || 9002;
@@ -13,6 +14,7 @@ const port = process.env.PORT || 9002;
 app.use(cors())
 app.use(express.urlencoded({extended : true}))
 app.use(express.json());
+app.use(express.static('public'));
 // @ts-ignore
 app.use(fileUpload({
   createParentPath: true
@@ -31,6 +33,7 @@ app.get('/api', (req: Request, res: Response) => {
 
 // All router here
 app.use('/api/user', userRouter)
+app.use('/api/page', pageRouter)
 
 const localImages = process.env.ENV && process.env.ENV == "development" ? './public' : '../public'
 app.use('/public', express.static(path.join(__dirname, localImages)));

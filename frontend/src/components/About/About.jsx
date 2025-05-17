@@ -2,14 +2,16 @@
 import React from 'react'
 import Layout from '../Layout/Layout'
 import Header from '../Layout/Header/Header'
+import BrandTemplates from './EditableLetter';
 
 const About = () => {
+  
   return (
     <Layout>
-      <div className="home-page">
-        <Header />
-        About page
-      </div>
+      <div >
+        {/* <Header /> */}
+        <BrandTemplates />
+          </div>
     </Layout>
   )
 }
