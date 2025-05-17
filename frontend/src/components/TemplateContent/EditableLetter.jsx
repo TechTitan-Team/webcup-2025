@@ -2,8 +2,9 @@ import React, { useState } from "react";
 import { useParams, useNavigate } from "react-router-dom";
 import useGetOneTemplate from "../../hooks/useGetOneTemplate";
 import sendData from "../../hooks/sendHTML";
+import Layout from "../Layout/Layout";
 
-export default function TemplateEditor() {
+export default function EditableLetter() {
   const { templateId } = useParams();
   const navigate = useNavigate();
   const { sendHtml } = sendData();
@@ -60,22 +61,6 @@ export default function TemplateEditor() {
     ) {
       resetToDefault();
     }
-  };
-
-  const handleSend = async () => {
-    if (hasChanges) {
-      if (
-        window.confirm(
-          "Vous avez des modifications non enregistrées. Voulez-vous enregistrer avant d'envoyer ?"
-        )
-      ) {
-        saveChanges();
-      }
-    }
-
-    const html = getHTML();
-    await sendHtml(title, html);
-    alert("Modèle envoyé avec succès !");
   };
 
   const handleShare = () => {
@@ -178,7 +163,7 @@ export default function TemplateEditor() {
   if (error) {
     return (
       <div className="flex items-center justify-center h-screen bg-gray-50">
-        <div className="text-center max-w-md p-6 bg-white rounded-lg shadow-md">
+        <div className="text-center max-w-md p-6  rounded-lg shadow-md">
           <svg
             className="w-16 h-16 text-red-500 mx-auto mb-4"
             fill="none"
@@ -225,139 +210,105 @@ export default function TemplateEditor() {
   }
 
   return (
-    <div className="flex h-screen">
-      {/* Sidebar */}
-      <div
-        className={`flex flex-col bg-gray-100 border-r border-gray-300 transition-all duration-300 ease-in-out overflow-y-auto ${
-          sidebarOpen ? "w-80" : "w-0"
-        }`}
-      >
-        <div className="p-4 space-y-6">
-          <div className="bg-white border border-gray-200 rounded-md p-4 mb-6">
-            <h2 className="text-lg font-bold text-gray-800 mb-2">
-              {template.title}
-            </h2>
-            <p className="text-sm text-gray-600 mb-4">{template.description}</p>
-            <div className="flex items-center">
-              <div className="w-7 h-7 bg-blue-100 rounded-full flex items-center justify-center text-blue-600 font-bold text-xs">
-                {template.author.charAt(0)}
+    <Layout>
+      <div className="flex h-screen bg-gradient-to-br from-pink via-indigo-100 to-pink-200 overflow-x-hidden">
+        {/* Sidebar */}
+        <div
+          className={`flex flex-col  border-r border-indigo-300 transition-all duration-300 ease-in-out overflow-y-auto ${
+            sidebarOpen ? "w-80" : "w-0"
+          }`}
+        >
+          <div className="p-4 space-y-6">
+            <div className=" border border-gray-200 rounded-md p-4 mb-6">
+              <h2 className="text-lg font-bold text-gray-800 mb-2">
+                {template.title}
+              </h2>
+              <p className="text-sm text-gray-600 mb-4">
+                {template.description}
+              </p>
+              <div className="flex items-center">
+                <div className="w-7 h-7 bg-blue-100 rounded-full flex items-center justify-center text-blue-600 font-bold text-xs">
+                  {template.author.charAt(0)}
+                </div>
+                <span className="ml-2 text-sm text-gray-700">
+                  par {template.author}
+                </span>
               </div>
-              <span className="ml-2 text-sm text-gray-700">
-                par {template.author}
-              </span>
             </div>
-          </div>
 
-          <div className="flex items-center space-x-2 text-gray-700 font-semibold text-sm">
-            <IconBrandTemplates />
-            <span>Titre</span>
-          </div>
+            <div className="flex items-center space-x-2 text-gray-700 font-semibold text-sm">
+              <IconBrandTemplates />
+              <span>Titre</span>
+            </div>
 
-          <div className="bg-white border border-gray-200 rounded-md p-4 text-center text-gray-700 text-sm leading-relaxed">
-            <textarea
-              value={title}
-              onChange={(e) => setTitle(e.target.value)}
-              className="w-full p-2 border border-gray-300 rounded resize-none focus:outline-none focus:ring-2 focus:ring-blue-500"
-              rows="2"
-            ></textarea>
-          </div>
+            <div className=" border border-gray-200 rounded-md p-4 text-center text-gray-700 text-sm leading-relaxed">
+              <textarea
+                value={title}
+                onChange={(e) => setTitle(e.target.value)}
+                className="w-full p-2 border border-gray-300 rounded resize-none focus:outline-none focus:ring-2 focus:ring-blue-500"
+                rows="2"
+              ></textarea>
+            </div>
 
-          {/* Content Field */}
-          <div className="flex items-center space-x-2 text-gray-900 font-semibold text-sm cursor-pointer">
-            <IconVisualIdentity />
-            <span>Contenu</span>
-          </div>
+            {/* Content Field */}
+            <div className="flex items-center space-x-2 text-gray-900 font-semibold text-sm cursor-pointer">
+              <IconVisualIdentity />
+              <span>Contenu</span>
+            </div>
 
-          <div className="bg-white border border-gray-200 rounded-md p-4 text-center text-gray-700 text-sm leading-relaxed">
-            <textarea
-              value={content}
-              onChange={(e) => setContent(e.target.value)}
-              className="w-full p-2 border border-gray-300 rounded resize-none focus:outline-none focus:ring-2 focus:ring-blue-500"
-              rows="10"
-            ></textarea>
-          </div>
+            <div className=" border border-gray-200 rounded-md p-4 text-center text-gray-700 text-sm leading-relaxed">
+              <textarea
+                value={content}
+                onChange={(e) => setContent(e.target.value)}
+                className="w-full p-2 border border-gray-300 rounded resize-none focus:outline-none focus:ring-2 focus:ring-blue-500"
+                rows="10"
+              ></textarea>
+            </div>
 
-          {/* Action Buttons */}
-          <div className="flex space-x-2">
-            <button
-              onClick={handleReset}
-              className="flex-1 bg-gray-200 text-gray-800 px-4 py-2 rounded-md hover:bg-gray-300 transition"
-            >
-              Réinitialiser
-            </button>
-            <button
-              onClick={handleSave}
-              className={`flex-1 px-4 py-2 rounded-md transition ${
-                hasChanges
-                  ? "bg-blue-600 text-white hover:bg-blue-700"
-                  : "bg-gray-200 text-gray-400 cursor-not-allowed"
-              }`}
-              disabled={!hasChanges}
-            >
-              Enregistrer
-            </button>
+            {/* Action Buttons */}
+            <div className="flex space-x-2">
+              <button
+                onClick={handleReset}
+                className="flex-1 bg-gray-200 text-gray-800 px-4 py-2 rounded-md hover:bg-gray-300 transition"
+              >
+                Réinitialiser
+              </button>
+              <button
+                onClick={handleSave}
+                className={`flex-1 px-4 py-2 rounded-md transition ${
+                  hasChanges
+                    ? "bg-blue-600 text-white hover:bg-blue-700"
+                    : "bg-gray-200 text-gray-400 cursor-not-allowed"
+                }`}
+                disabled={!hasChanges}
+              >
+                Enregistrer
+              </button>
+            </div>
           </div>
         </div>
-      </div>
 
-      <main className="flex-grow p-6 bg-white flex flex-col">
-        <div className="mb-6 flex items-center justify-between">
-          <div className="flex items-center">
-            <button
-              onClick={() => {
-                if (hasChanges) {
-                  if (
-                    window.confirm(
-                      "Vous avez des modifications non enregistrées. Êtes-vous sûr de vouloir quitter ?"
-                    )
-                  ) {
+        <main className="flex-grow p-6  flex flex-col">
+          <div className="mb-6 flex items-center justify-between">
+            <div className="flex items-center">
+              <button
+                onClick={() => {
+                  if (hasChanges) {
+                    if (
+                      window.confirm(
+                        "Vous avez des modifications non enregistrées. Êtes-vous sûr de vouloir quitter ?"
+                      )
+                    ) {
+                      navigate("/app");
+                    }
+                  } else {
                     navigate("/app");
                   }
-                } else {
-                  navigate("/app");
-                }
-              }}
-              className="flex items-center text-gray-700 hover:text-blue-600 transition mr-4"
-            >
-              <svg
-                className="w-5 h-5 mr-2"
-                fill="none"
-                stroke="currentColor"
-                viewBox="0 0 24 24"
-                xmlns="http://www.w3.org/2000/svg"
+                }}
+                className="flex items-center text-gray-700 hover:text-blue-600 transition mr-4"
               >
-                <path
-                  strokeLinecap="round"
-                  strokeLinejoin="round"
-                  strokeWidth={2}
-                  d="M10 19l-7-7m0 0l7-7m-7 7h18"
-                ></path>
-              </svg>
-              Retour aux modèles
-            </button>
-
-            {/* Avatar Group */}
-            <div className="flex -space-x-2 ml-4">
-              {sharedUsers.map((user) => (
-                <div
-                  key={user.id}
-                  className={`w-8 h-8 ${user.color} rounded-full flex items-center justify-center font-bold text-xs ring-2 ring-white`}
-                  title={user.name}
-                >
-                  {user.initial}
-                </div>
-              ))}
-              <div className="w-8 h-8 bg-gray-200 rounded-full flex items-center justify-center text-gray-600 font-bold text-xs ring-2 ring-white">
-                +2
-              </div>
-            </div>
-          </div>
-
-          <div className="flex items-center">
-            {hasChanges && (
-              <span className="text-amber-600 text-sm flex items-center mr-4">
                 <svg
-                  className="w-4 h-4 mr-1"
+                  className="w-5 h-5 mr-2"
                   fill="none"
                   stroke="currentColor"
                   viewBox="0 0 24 24"
@@ -367,46 +318,82 @@ export default function TemplateEditor() {
                     strokeLinecap="round"
                     strokeLinejoin="round"
                     strokeWidth={2}
-                    d="M12 9v2m0 4h.01m-6.938 4h13.856c1.54 0 2.502-1.667 1.732-3L13.732 4c-.77-1.333-2.694-1.333-3.464 0L3.34 16c-.77 1.333.192 3 1.732 3z"
+                    d="M10 19l-7-7m0 0l7-7m-7 7h18"
                   ></path>
                 </svg>
-                Modifications non enregistrées
-              </span>
-            )}
+                Retour aux modèles
+              </button>
 
-            <button
-              onClick={handleShare}
-              className="flex items-center text-gray-700 hover:text-blue-600 transition bg-gray-100 hover:bg-gray-200 px-3 py-2 rounded-md mr-2"
-              title="Partager"
-            >
-              <IconShare />
-              <span className="ml-2">Partager</span>
-            </button>
+              {/* Avatar Group */}
+              <div className="flex -space-x-2 ml-4">
+                {sharedUsers.map((user) => (
+                  <div
+                    key={user.id}
+                    className={`w-8 h-8 ${user.color} rounded-full flex items-center justify-center font-bold text-xs ring-2 ring-white`}
+                    title={user.name}
+                  >
+                    {user.initial}
+                  </div>
+                ))}
+                <div className="w-8 h-8 bg-gray-200 rounded-full flex items-center justify-center text-gray-600 font-bold text-xs ring-2 ring-white">
+                  +2
+                </div>
+              </div>
+            </div>
 
-            <button
-              onClick={handleFullScreen}
-              className="flex items-center text-gray-700 hover:text-blue-600 transition bg-gray-100 hover:bg-gray-200 px-3 py-2 rounded-md"
-              title="Plein écran"
-            >
-              <IconFullScreen />
-              <span className="ml-2">Plein écran</span>
-            </button>
+            <div className="flex items-center">
+              {hasChanges && (
+                <span className="text-amber-600 text-sm flex items-center mr-4">
+                  <svg
+                    className="w-4 h-4 mr-1"
+                    fill="none"
+                    stroke="currentColor"
+                    viewBox="0 0 24 24"
+                    xmlns="http://www.w3.org/2000/svg"
+                  >
+                    <path
+                      strokeLinecap="round"
+                      strokeLinejoin="round"
+                      strokeWidth={2}
+                      d="M12 9v2m0 4h.01m-6.938 4h13.856c1.54 0 2.502-1.667 1.732-3L13.732 4c-.77-1.333-2.694-1.333-3.464 0L3.34 16c-.77 1.333.192 3 1.732 3z"
+                    ></path>
+                  </svg>
+                  Modifications non enregistrées
+                </span>
+              )}
+
+              <button
+                onClick={handleShare}
+                className="flex items-center text-gray-700 hover:text-blue-600 transition bg-gray-100 hover:bg-gray-200 px-3 py-2 rounded-md mr-2"
+                title="Partager"
+              >
+                <IconShare />
+                <span className="ml-2">Partager</span>
+              </button>
+
+              <button
+                onClick={handleFullScreen}
+                className="flex items-center text-gray-700 hover:text-blue-600 transition bg-gray-100 hover:bg-gray-200 px-3 py-2 rounded-md"
+                title="Plein écran"
+              >
+                <IconFullScreen />
+                <span className="ml-2">Plein écran</span>
+              </button>
+            </div>
           </div>
-        </div>
 
-        <div className="flex-grow flex justify-center items-center">
-          <div className="relative w-full  h-[800px] border  rounded-md">
-            <iframe
-              title="Aperçu HTML"
-              srcDoc={getHTML()}
-              className="w-full h-full rounded-md"
-              sandbox="allow-same-origin allow-scripts allow-popups allow-forms"
-            />
+          <div className="flex-grow flex justify-center items-center">
+            <div className="relative w-full  h-[800px] border  rounded-md">
+              <iframe
+                title="Aperçu HTML"
+                srcDoc={getHTML()}
+                className="w-full h-full rounded-md"
+                sandbox="allow-same-origin allow-scripts allow-popups allow-forms"
+              />
+            </div>
           </div>
-        </div>
-
-      
-      </main>
-    </div>
+        </main>
+      </div>
+    </Layout>
   );
 }

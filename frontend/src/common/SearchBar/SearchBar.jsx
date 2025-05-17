@@ -11,7 +11,7 @@ const SearchBar = ({
 }) => {
   return (
     <motion.div
-      className="max-w-4xl mx-auto mb-6 px-4 sticky top-2 z-30"
+      className="max-w-3xl mx-auto mb-6 px-4 sticky top-2 "
       style={style}
       initial={{ opacity: 0, y: 20 }}
       animate={{ opacity: 1, y: 0 }}

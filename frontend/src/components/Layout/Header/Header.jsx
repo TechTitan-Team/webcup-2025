@@ -1,3 +1,4 @@
+import { CgMenuGridO } from "react-icons/cg";
 import React, { useState } from "react";
 import styles from "./style.module.scss";
 import { AnimatePresence } from "framer-motion";
@@ -11,34 +12,35 @@ const Header = () => {
   };
 
   return (
-      <header className="header w-full flex justify-between items-center px-12 py-5">
-        <div className="w-1/3">
-          <p className="link">Start a project</p>
-        </div>
-        <div className="w-1/3 text-center">
-          <p className="link">Fullstack developer</p>
-        </div>
-        <div className="w-1/3 flex justify-end">
-          <div onClick={toggleMenu} className={styles.button}>
-            <div
-              className={`${styles.burger} ${
-                isMenuOpen ? styles.burgerActive : ""
-              }`}
-            ></div>
-          </div>
-        </div>
-
-        {/* Overlay that appears when menu is open */}
-        {isMenuOpen && (
+    <header className="header w-full flex justify-between items-center px-12 py-5">
+      <div className="w-1/3">
+        <p className="link">The EndPage</p>
+      </div>
+      <div className="w-1/3 text-center">
+        {/* <p className="link">
+            Fullstack developer
+        </p> */}
+      </div>
+      <div className="w-1/3 flex justify-end">
+        <div onClick={toggleMenu} className={styles.button}>
           <div
-            className={`blur-overlay ${isMenuOpen ? "visible" : ""}`}
-            onClick={toggleMenu}
+            className={`${styles.burger} ${
+              isMenuOpen ? styles.burgerActive : ""
+            }`}
           ></div>
-        )}
+        </div>
+      </div>
 
-        <AnimatePresence mode="wait">{isMenuOpen && <Nav />}</AnimatePresence>
-      </header>
-     
+      {/* Overlay that appears when menu is open */}
+      {isMenuOpen && (
+        <div
+          className={`blur-overlay ${isMenuOpen ? "visible" : ""}`}
+          onClick={toggleMenu}
+        ></div>
+      )}
+
+      <AnimatePresence mode="wait">{isMenuOpen && <Nav />}</AnimatePresence>
+    </header>
   );
 };
 

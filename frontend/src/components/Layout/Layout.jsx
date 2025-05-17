@@ -1,15 +1,12 @@
-import React from "react";
-import Stairs from "../../common/TransitionPage/Stairs/Stairs";
-import { Outlet } from "react-router-dom";
-import Header from "./Header/Header";
+import React from 'react'
+import Stairs from '../../common/TransitionPage/Stairs/Stairs'
 
-const Layout = () => {
+const Layout = ({ children }) => {
   return (
     <Stairs>
-      <Header />
-      <Outlet />
+        {children}
     </Stairs>
-  );
-};
+  )
+}
 
-export default Layout;
+export default Layout

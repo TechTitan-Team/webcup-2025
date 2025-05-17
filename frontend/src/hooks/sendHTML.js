@@ -4,11 +4,12 @@ const {http} = useHttps()
 const sendData = ()=>{
     const sendHtml = async(type, html)=>{
         try{
-            await http.post('/page', {
+            let response = await http.post('/page', {
                 type: type,
                 id_user: 1,
                 content: html
             })
+            console.log(response.data)
         }catch(err){
             console.log(err);
         }
