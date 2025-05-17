@@ -15,13 +15,13 @@ const Header = () => {
     <header className='header w-full flex justify-between items-center px-12 py-5'>
       <div className="w-1/3">
         <p className="link">
-            Start a project
+            The EndPage
         </p>
       </div>
       <div className="w-1/3 text-center">
-        <p className="link">
+        {/* <p className="link">
             Fullstack developer
-        </p>
+        </p> */}
       </div>
       <div className="w-1/3 flex justify-end">
         <div onClick={toggleMenu} className={styles.button}>

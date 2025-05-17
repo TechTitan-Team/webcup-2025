@@ -1,11 +1,23 @@
-
-import React from "react";
+import React, { useState, useEffect } from "react";
 import Marquee from "react-fast-marquee";
 import { HiFolderDownload } from "react-icons/hi";
 import CustomContainer from "../../../common/CustomContainer/CustomContainer";
 import CustomButton from "../../../common/CustomButton/CustomButton";
 
+import backgroundImage from "../../../assets/images/pexels-by.png"; 
+import backgroundImageTwo from "../../../assets/images/pexels-by-2.png"; 
+
 const Hero = () => {
+  const [currentImage, setCurrentImage] = useState(0);
+
+  useEffect(() => {
+    const interval = setInterval(() => {
+      setCurrentImage((prev) => (prev === 0 ? 1 : 0));
+    }, 3000); // Change d'image toutes les 3 secondes
+
+    return () => clearInterval(interval);
+  }, []);
+
   return (
     <CustomContainer className={"banner"}>
       <div className="banner-title mt-5">
@@ -14,7 +26,7 @@ const Hero = () => {
           gradient={false} 
           style={{ overflow: "hidden", zIndex: 'auto' }}
         >
-          <h1>Niaina Christopher - Razafindrazaka - </h1>
+          <h1>Crée ta page de départ -</h1>
         </Marquee>
         <Marquee
           speed={80}
@@ -22,7 +34,7 @@ const Hero = () => {
           gradient={false}
           style={{ overflow: "hidden", zIndex: 'auto'}}
         >
-          <h1>Fullstack developer - Mobile - Web - </h1>
+          <h1>dramatique - classe - gênante ou touchante -</h1>
         </Marquee>
       </div>
 
@@ -37,6 +49,22 @@ const Hero = () => {
           </div>
         </div>
         <div className="w-3/5 text-center">
+          <img 
+            src={backgroundImage} 
+            alt="Background" 
+            className={`absolute bottom-0 left-1/2 transform -translate-x-1/2 w-150 h-auto transition-opacity duration-1000 ${
+              currentImage === 0 ? 'opacity-60' : 'opacity-0'
+            }`}
+            style={{ zIndex: 0 }}
+          />
+          <img 
+            src={backgroundImageTwo} 
+            alt="Background" 
+            className={`absolute bottom-0 left-1/2 transform -translate-x-1/2 w-110 h-auto transition-opacity duration-1000 ${
+              currentImage === 1 ? 'opacity-60' : 'opacity-0'
+            }`}
+            style={{ zIndex: 0 }}
+          />
         </div>
         <div className="w-1/5 flex flex-col justify-start items-start">
           <p>
@@ -45,7 +73,7 @@ const Hero = () => {
           <div>
             <CustomButton
               className="mt-5"
-              title={"Download my cv"}
+              title={"Créer ma page"}
               icon={<HiFolderDownload className="w-6 h-6" />}
             />
           </div>{/*
