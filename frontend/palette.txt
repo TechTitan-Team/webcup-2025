@@ -1,0 +1,6 @@
+
+Purple: #8C2EFF
+Blue (light cyan): #8AE8FF
+Yellow: #FFDD00
+Light Pink/Peach: #FFE7D1
+Light Blue/Gray (background gradient): #E1E8EC to #FAFAFA
