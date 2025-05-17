@@ -1,0 +1,25 @@
+version: "3.7"
+
+services:
+  db:
+    image: mysql:5.7
+    volumes:
+      - db_data:/var/lib/mysql
+    environment:
+      MYSQL_ROOT_PASSWORD: ts_boiler
+      MYSQL_DATABASE: ts_boiler_db
+      MYSQL_USER: developer
+      MYSQL_PASSWORD: ts_boiler
+    ports:
+      - "3300:3306"
+
+  phpmyadmin:
+    image: phpmyadmin/phpmyadmin
+    ports:
+      - "88:80"
+    environment:
+      PMA_USER: developer
+      PMA_PASSWORD: ts_boiler
+
+volumes:
+  db_data: {}

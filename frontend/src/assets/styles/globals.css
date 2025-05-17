@@ -1,0 +1,86 @@
+@import "tailwindcss";
+
+:root {
+  --background: #391E10;
+  --foreground: #FDFCE8;
+}
+
+body {
+  margin: 0;
+  padding: 0;
+  background: var(--background);
+  color: var(--foreground);
+}
+
+.header .link {
+  font-size: 2rem;
+  font-family: "Bebas Neue", sans-serif;
+  font-style: normal;
+  cursor: pointer;
+}
+
+.home-page {
+  background-image: url('../images/brown-bg-one.png');
+  background-size: cover;  
+  background-position: center;
+  background-repeat: no-repeat; 
+  height: 100vh;
+  width: 100%;
+}
+
+.banner .banner-title {
+  text-align: center;
+}
+
+.banner .banner-title h1 {
+  font-size: 14rem;
+  line-height: 11rem;
+  font-family: "Bebas Neue", sans-serif;
+  font-weight: 700;
+  font-style: normal;
+  letter-spacing: 0px;
+}
+
+.banner .content p {
+  font-family: "Barlow Condensed", sans-serif;
+  font-weight: 400;
+  font-style: normal;
+  font-size: 1.5rem;
+  text-transform: uppercase;
+}
+
+.bebas-neue-regular {
+  font-family: "Bebas Neue", sans-serif;
+  font-weight: 400;
+  font-style: normal;
+}
+
+.barlow-condensed-regular {
+  font-family: "Barlow Condensed", sans-serif;
+  font-weight: 400;
+  font-style: normal;
+}
+
+
+/* Overlay for the rest of the page */
+.blur-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%; 
+  backdrop-filter: blur(8px); 
+  -webkit-backdrop-filter: blur(8px); 
+  background-color: rgba(0, 0, 0, 0.54); 
+  filter: blur(5px); 
+  z-index: 2; 
+  /* // Initial transparent state */
+  background-color: rgba(0, 0, 0, 0);
+  
+  /* // Simple transition for fading in */
+  transition: background-color 4s ease;
+  
+  &.visible {
+    background-color: rgba(0, 0, 0, 0.631);
+  }
+}
