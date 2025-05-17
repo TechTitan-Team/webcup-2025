@@ -16,15 +16,35 @@ model User {
 	email	String	@unique	
 	password	String
 	Page Page[]
+
+	Clash1 Clash[] @relation(name: "user2")
+
+	Clash2 Clash[] @relation(name: "user1")
 }
   
 model Page {
   id	Int	@id	@default(autoincrement())
   created_at	DateTime	@default(now())
-	url	String	
+	url	String	@default("")
 	type	String	
 	id_user	Int
   user  User  @relation(fields: [id_user], references: [id], onDelete: Cascade, onUpdate: Cascade)
-	
+	Clash1 Clash[] @relation(name: "page1")
+	Clash2 Clash[] @relation(name: "page2")
+}
+  
+model Clash {
+  id	Int	@id	@default(autoincrement())
+  created_at	DateTime	@default(now())
+	title	String	
+	id_page1	Int	
+	id_page2	Int	
+	id_user1	Int	
+	id_user2	Int	
+	nbr_like	Int
+	page1 		Page @relation(name: "page1",fields: [id_page1], references: [id], onDelete: Cascade, onUpdate: Cascade)
+	page2 		Page @relation(name: "page2",fields: [id_page2], references: [id], onDelete: Cascade, onUpdate: Cascade)
+	user1		User @relation(name: "user1", fields: [id_user1], references: [id], onDelete: Cascade, onUpdate: Cascade)
+	user2		User @relation(name: "user2", fields: [id_user2], references: [id], onDelete: Cascade, onUpdate: Cascade)
 }
   
