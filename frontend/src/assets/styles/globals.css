@@ -1,8 +1,8 @@
 @import "tailwindcss";
 
 :root {
-  --background: #391E10;
-  --foreground: #033d68;
+  --background: #fdfce8;
+  --foreground: #fdfce8;
 }
 
 body {
@@ -80,25 +80,24 @@ body {
   font-style: normal;
 }
 
-
 /* Overlay for the rest of the page */
 .blur-overlay {
   position: fixed;
   top: 0;
   left: 0;
   width: 100%;
-  height: 100%; 
-  backdrop-filter: blur(8px); 
-  -webkit-backdrop-filter: blur(8px); 
-  background-color: rgba(0, 0, 0, 0.54); 
-  filter: blur(5px); 
-  z-index: 2; 
+  height: 100%;
+  backdrop-filter: blur(8px);
+  -webkit-backdrop-filter: blur(8px);
+  background-color: rgba(0, 0, 0, 0.54);
+  filter: blur(5px);
+  z-index: 2;
   /* // Initial transparent state */
   background-color: rgba(0, 0, 0, 0);
-  
+
   /* // Simple transition for fading in */
   transition: background-color 4s ease;
-  
+
   &.visible {
     background-color: rgba(0, 0, 0, 0.631);
   }
