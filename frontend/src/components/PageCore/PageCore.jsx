@@ -33,6 +33,24 @@ const CanvaEditor = () => {
     fit: 'cover' // cover, contain, or stretch
   });
   const [bgSettingsVisible, setBgSettingsVisible] = useState(false);
+  const [emotionPickerVisible, setEmotionPickerVisible] = useState(false);
+  
+  // Common emotion emojis for quick access
+  const emotionEmojis = [
+    "😀", "😃", "😄", "😁", "😆", "😅", "🤣", "😂", "🙂", "🙃", 
+    "😉", "😊", "😇", "🥰", "😍", "🤩", "😘", "😗", "😚", "😙",
+    "😋", "😛", "😜", "🤪", "😝", "🤑", "🤗", "🤭", "🤫", "🤔",
+    "🤐", "🤨", "😐", "😑", "😶", "😏", "😒", "🙄", "😬", "🤥",
+    "😌", "😔", "😪", "🤤", "😴", "😷", "🤒", "🤕", "🤢", "🤮",
+    "🤧", "🥵", "🥶", "🥴", "😵", "🤯", "🤠", "🥳", "😎", "🤓",
+    "🧐", "😕", "😟", "🙁", "☹️", "😮", "😯", "😲", "😳", "🥺",
+    "😦", "😧", "😨", "😰", "😥", "😢", "😭", "😱", "😖", "😣",
+    "😞", "😓", "😩", "😫", "🥱", "😤", "😡", "😠", "🤬", "😈",
+    "👿", "💀", "☠️", "💩", "🤡", "👹", "👺", "👻", "👽", "👾",
+    "🤖", "😺", "😸", "😹", "😻", "😼", "😽", "🙀", "😿", "😾",
+    "❤️", "🧡", "💛", "💚", "💙", "💜", "🤎", "🖤", "🤍", "💔",
+    "❣️", "💕", "💞", "💓", "💗", "💖", "💘", "💝", "💟", "💌"
+  ];
 
   // Handle window resize to make the stage responsive
   useEffect(() => {
@@ -119,6 +137,7 @@ const CanvaEditor = () => {
       fill: getRandomColor(),
       isDragging: false,
       rotation: 0,
+      cornerRadius: 0, // Add corner radius property with default value 0
     };
     setElements([...elements, newElement]);
     setSelectedId(newElement.id);
@@ -156,6 +175,26 @@ const CanvaEditor = () => {
     };
     setElements([...elements, newElement]);
     setSelectedId(newElement.id);
+  };
+
+  const addEmoji = (emoji) => {
+    const newElement = {
+      id: uuidv4(),
+      type: 'text',
+      x: stageSize.width / 2 - 25,
+      y: stageSize.height / 2 - 25,
+      text: emoji,
+      fontSize: 50,
+      fontFamily: 'Arial',
+      fill: '#000000',
+      width: 50,
+      height: 50,
+      isDragging: false,
+      rotation: 0,
+    };
+    setElements([...elements, newElement]);
+    setSelectedId(newElement.id);
+    setEmotionPickerVisible(false);
   };
 
   const addVideo = () => {
@@ -431,6 +470,21 @@ const CanvaEditor = () => {
     setTextEditorVisible(false);
   };
 
+  // Function to update the corner radius of a rectangle
+  const updateRectangleCornerRadius = (id, radius) => {
+    setElements(
+      elements.map((el) => {
+        if (el.id === id && el.type === 'rectangle') {
+          return {
+            ...el,
+            cornerRadius: radius
+          };
+        }
+        return el;
+      })
+    );
+  };
+
   const handleBackgroundColorChange = (e) => {
     setBackground({
       ...background,
@@ -512,6 +566,7 @@ const CanvaEditor = () => {
             width: ${element.width}px;
             height: ${element.height}px;
             background-color: ${element.fill};
+            border-radius: ${element.cornerRadius || 0}px;
             ${rotation}
         "></div>
 `;
@@ -604,6 +659,10 @@ const CanvaEditor = () => {
     setBgSettingsVisible(!bgSettingsVisible);
   };
 
+  const toggleEmotionPicker = () => {
+    setEmotionPickerVisible(!emotionPickerVisible);
+  };
+
   const deleteSelected = () => {
     if (selectedId) {
       setElements(elements.filter(el => el.id !== selectedId));
@@ -614,8 +673,8 @@ const CanvaEditor = () => {
   // Handle keyboard shortcuts
   useEffect(() => {
     const handleKeyDown = (e) => {
-      // Don't trigger shortcuts if text editor or background settings are open
-      if (textEditorVisible || bgSettingsVisible) return;
+      // Don't trigger shortcuts if modals are open
+      if (textEditorVisible || bgSettingsVisible || emotionPickerVisible) return;
 
       // Delete key or backspace
       if ((e.key === 'Delete' || e.key === 'Backspace') && selectedId) {
@@ -630,7 +689,7 @@ const CanvaEditor = () => {
     
     window.addEventListener('keydown', handleKeyDown);
     return () => window.removeEventListener('keydown', handleKeyDown);
-  }, [selectedId, elements, textEditorVisible, bgSettingsVisible]);
+  }, [selectedId, elements, textEditorVisible, bgSettingsVisible, emotionPickerVisible]);
 
   // Get the selected element
   const selectedElement = elements.find(el => el.id === selectedId);
@@ -678,7 +737,7 @@ const CanvaEditor = () => {
   };
 
   return (
-    <div className="relative h-screen w-screen overflow-hidden bg-gray-100 text-black">
+    <div className="relative h-screen w-screen overflow-hidden bg-gray-100 text-gray-500">
       {/* Hidden file inputs */}
       <input 
         type="file" 
@@ -866,6 +925,42 @@ const CanvaEditor = () => {
         </div>
       )}
 
+      {/* Emotion Emoji Picker */}
+      {emotionPickerVisible && (
+        <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50">
+          <div className="bg-white rounded-lg shadow-xl p-4 w-[500px] max-w-full max-h-[80vh] overflow-hidden flex flex-col">
+            <div className="flex justify-between items-center mb-4">
+              <h2 className="text-xl font-semibold text-gray-800">Emotion Emojis</h2>
+              <button
+                className="p-1 rounded-full hover:bg-gray-200"
+                onClick={() => setEmotionPickerVisible(false)}
+              >
+                <svg className="w-6 h-6 text-gray-600" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M6 18L18 6M6 6l12 12" />
+                </svg>
+              </button>
+            </div>
+            
+            {/* Emotion emoji grid */}
+            <div className="flex-1 overflow-y-auto p-2 border border-gray-200 rounded-md grid grid-cols-8 gap-2">
+              {emotionEmojis.map((emoji, index) => (
+                <button
+                  key={index}
+                  className="text-2xl h-10 w-10 flex items-center justify-center hover:bg-gray-100 rounded"
+                  onClick={() => addEmoji(emoji)}
+                >
+                  {emoji}
+                </button>
+              ))}
+            </div>
+            
+            <div className="mt-4 text-center text-sm text-gray-500">
+              Click on an emoji to add it to your canvas
+            </div>
+          </div>
+        </div>
+      )}
+
       {/* Floating toolbar */}
       <div className={`absolute top-4 left-1/2 transform -translate-x-1/2 z-10 transition-all duration-300 ${toolbarVisible ? 'opacity-100' : 'opacity-0 pointer-events-none'}`}>
         <div className="bg-white rounded-lg shadow-lg p-2 flex space-x-2">
@@ -896,6 +991,16 @@ const CanvaEditor = () => {
           >
             <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
               <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M11 5H6a2 2 0 00-2 2v11a2 2 0 002 2h11a2 2 0 002-2v-5m-1.414-9.414a2 2 0 112.828 2.828L11.828 15H9v-2.828l8.586-8.586z" />
+            </svg>
+          </button>
+          
+          <button 
+            onClick={toggleEmotionPicker}
+            className="bg-yellow-500 hover:bg-yellow-600 text-white p-2 rounded-full"
+            title="Add Emotion"
+          >
+            <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M14.828 14.828a4 4 0 01-5.656 0M9 10h.01M15 10h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
             </svg>
           </button>
           
@@ -986,7 +1091,7 @@ const CanvaEditor = () => {
       </button>
       
       {/* Element properties panel - only shown when an element is selected */}
-      {selectedElement && !textEditorVisible && !bgSettingsVisible && (
+      {selectedElement && !textEditorVisible && !bgSettingsVisible && !emotionPickerVisible && (
         <div className="absolute bottom-4 left-1/2 transform -translate-x-1/2 bg-white rounded-lg shadow-lg p-3 z-10">
           <div className="flex items-center space-x-4">
             <div>
@@ -1114,6 +1219,27 @@ const CanvaEditor = () => {
               </div>
             </div>
 
+            {/* Add corner radius control for rectangles */}
+            {selectedElement.type === 'rectangle' && (
+              <div>
+                <span className="text-xs text-gray-500">Corner Radius</span>
+                <div className="flex items-center">
+                  <input 
+                    type="number" 
+                    className="w-16 px-2 py-1 border rounded text-sm"
+                    value={selectedElement.cornerRadius || 0}
+                    onChange={(e) => {
+                      const newRadius = Math.max(0, Number(e.target.value));
+                      updateRectangleCornerRadius(selectedId, newRadius);
+                    }}
+                    min="0"
+                    max={Math.min(selectedElement.width / 2, selectedElement.height / 2)}
+                  />
+                  <span className="text-xs ml-1">px</span>
+                </div>
+              </div>
+            )}
+
             {(selectedElement.type === 'rectangle' || selectedElement.type === 'circle') && (
               <div>
                 <span className="text-xs text-gray-500">Color</span>
@@ -1190,6 +1316,7 @@ const CanvaEditor = () => {
                   width={element.width}
                   height={element.height}
                   fill={element.fill}
+                  cornerRadius={element.cornerRadius || 0} // Apply corner radius
                   draggable
                   rotation={element.rotation}
                   onDragStart={handleDragStart}
@@ -1346,15 +1473,34 @@ const CanvaEditor = () => {
         </Layer>
       </Stage>
 
-      {/* Background button hint - only shown when no background image is set */}
-      {background.type === 'color' && !bgSettingsVisible && (
-        <div 
-          className="absolute bottom-16 left-4 bg-teal-500 text-white text-xs rounded-full px-4 py-2 cursor-pointer hover:bg-teal-600"
-          onClick={toggleBackgroundSettings}
-        >
-          Set Background Image
-        </div>
-      )}
+      {/* Quick access buttons */}
+      <div className="absolute bottom-16 left-4 flex flex-col space-y-2">
+        {/* Background button hint - only shown when no background image is set */}
+        {background.type === 'color' && !bgSettingsVisible && !emotionPickerVisible && !textEditorVisible && (
+          <button 
+            className="bg-teal-500 text-white text-xs rounded-full px-4 py-2 cursor-pointer hover:bg-teal-600 flex items-center"
+            onClick={toggleBackgroundSettings}
+          >
+            <svg className="w-4 h-4 mr-1" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M4 16l4.586-4.586a2 2 0 012.828 0L16 16m-2-2l1.586-1.586a2 2 0 012.828 0L20 14m-6-6h.01M6 20h12a2 2 0 002-2V6a2 2 0 00-2-2H6a2 2 0 00-2 2v12a2 2 0 002 2z" />
+            </svg>
+            Set Background
+          </button>
+        )}
+
+        {/* Emotions button hint */}
+        {!emotionPickerVisible && !bgSettingsVisible && !textEditorVisible && (
+          <button 
+            className="bg-yellow-500 text-white text-xs rounded-full px-4 py-2 cursor-pointer hover:bg-yellow-600 flex items-center"
+            onClick={toggleEmotionPicker}
+          >
+            <svg className="w-4 h-4 mr-1" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M14.828 14.828a4 4 0 01-5.656 0M9 10h.01M15 10h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
+            </svg>
+            Add Emotion
+          </button>
+        )}
+      </div>
 
       {/* Drag & drop hint */}
       <div className="absolute bottom-16 right-4 bg-black bg-opacity-70 text-white text-xs rounded-full px-4 py-2">
