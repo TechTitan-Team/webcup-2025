@@ -11,6 +11,10 @@ const Home = () => {
         <Header />
         <Hero />
       </div>
+      <div className="home-page">
+        <Header />
+        <Hero />
+      </div>
     </Layout>
   );
 };
