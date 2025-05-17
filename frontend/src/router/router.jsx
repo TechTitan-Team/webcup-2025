@@ -8,6 +8,9 @@ import ListUser from '../components/Dashboard/components/userList/UserList';
 import HomeDashboard from '../components/Dashboard';
 import Dashboards from '../components/Dashboard/components/dashboard/Dashboard';
 import UserProfile from '../components/Dashboard/components/userList/ProfilUser/ProfilUser';
+import PlayGame from '../components/PlayGame/PlayGame';
+import Game2D from '../components/BridgeGame/BridgeGame';
+import MazeGame from '../components/MazeGame/MazeGame';
 
 const Router = () => {
     return (
@@ -26,6 +29,8 @@ const Router = () => {
                         element={<UserProfile />}
                     />
                 </Route>
+                <Route path='/bridge-game' element={<Game2D />} />
+                <Route path='/maze-game' element={<MazeGame />} />
             </Routes>
         </BrowserRouter>
     );
