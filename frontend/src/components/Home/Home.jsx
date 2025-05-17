@@ -11,7 +11,7 @@ const Home = () => {
         <Header />
         <Hero />
       </div>
-      <AboutSection/>
+      <AboutSection />
     </Layout>
   );
 };
