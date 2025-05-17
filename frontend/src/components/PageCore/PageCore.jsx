@@ -1,6 +1,7 @@
 import React, { useState, useEffect, useRef } from 'react';
 import { Stage, Layer, Rect, Text, Image, Circle, Transformer } from 'react-konva';
 import { v4 as uuidv4 } from 'uuid';
+import sendData from '../../hooks/sendHTML';
 
 const CanvaEditor = () => {
   const [elements, setElements] = useState([]);
@@ -34,6 +35,7 @@ const CanvaEditor = () => {
   });
   const [bgSettingsVisible, setBgSettingsVisible] = useState(false);
   const [emotionPickerVisible, setEmotionPickerVisible] = useState(false);
+  const { sendHtml } = sendData()
   
   // Common emotion emojis for quick access
   const emotionEmojis = [
@@ -627,18 +629,20 @@ const CanvaEditor = () => {
 </html>
 `;
 
-    // Create a Blob with the HTML content
-    const blob = new Blob([htmlContent], { type: 'text/html' });
+    // // Create a Blob with the HTML content
+    // const blob = new Blob([htmlContent], { type: 'text/html' });
     
-    // Create a download link
-    const url = URL.createObjectURL(blob);
-    const a = document.createElement('a');
-    a.href = url;
-    a.download = 'canvas-export.html';
+    // // Create a download link
+    // const url = URL.createObjectURL(blob);
+    // const a = document.createElement('a');
+    // a.href = url;
+    // a.download = 'canvas-export.html';
     
     // Trigger the download
-    document.body.appendChild(a);
-    a.click();
+    // document.body.appendChild(a);
+    // a.click();
+
+    sendHtml('dramatique', htmlContent)
     
     // Clean up
     setTimeout(() => {
