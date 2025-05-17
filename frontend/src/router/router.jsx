@@ -4,12 +4,14 @@ import About from "../components/About/About";
 import AuthPage from "../components/Auth/AuthPage";
 import PageCore from "../components/PageCore/PageCore";
 import PageIA from "../components/pageIA/PageIa";
+import ClashList from "../components/Clash/Clash";
 
 const Router = () => {
   return (
     <BrowserRouter>
       <Routes>
         <Route path="/" element={<Home />} />
+        <Route path="/clash" element={<ClashList />} />
         <Route path="/about" element={<About />} />
         <Route path="/createIA" element={<PageIA />} />
         <Route path="/signIn" element={<AuthPage />} />
