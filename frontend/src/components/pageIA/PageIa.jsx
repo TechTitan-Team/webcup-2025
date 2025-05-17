@@ -195,29 +195,25 @@ if (responseData?.text) {
         const pMatch = fullHtml.match(/<p(?:\s+[^>]*)?>([\s\S]*?)<\/p>/i);
         const originalContent = pMatch?.[1]?.trim() || "";
 
+
         // Créer le template HTML avec des marqueurs spécifiques
         let templateHtml = fullHtml;
         
         // Remplacer le contenu du h1 par un marqueur
-        templateHtml = templateHtml.replace(/<h1>.*?<\/h1>/i, `<h1>__TITLE__</h1>`);
+        templateHtml = templateHtml.replace(/<h1>.*?<\/h1>/i, `<h1 id='title-to-modify'>${originalTitle}</h1>`);
         
         // Remplacer le contenu du p par un marqueur
-        templateHtml = templateHtml.replace(/<p(?:\s+[^>]*)?>([\s\S]*?)<\/p>/i, `<p>__CONTENT__</p>`);
+        templateHtml = templateHtml.replace(/<p(?:\s+[^>]*)?>([\s\S]*?)<\/p>/i, `<p id='content-to-modify'>${originalContent}</p>`);
 
         // Mettre à jour les states
         setTitle(originalTitle);
         setContent(originalContent);
+
         setGeneratedHtml(templateHtml); // Stocke le template avec des marqueurs
         
-        // Fonction pour générer le HTML final
-        const generateFinalHtml = (template, title, content) => {
-            return template
-                .replace('__TITLE__', title)
-                .replace('__CONTENT__', content);
-        };
-        
         // Stockez cette fonction également dans un state ou une référence
-        setGeneratedHtml(generateFinalHtml);
+        setGeneratedHtml(templateHtml);
+        setIsModif(true);
     }
 }
 
@@ -243,6 +239,28 @@ if (responseData?.text) {
         }
     }
 
+    const handleModifyTitle = (e) => {
+        setTitle(e.target.value)
+        let frame = document.getElementById('iframe-to-modify')
+        let de = frame.contentWindow.document.getElementById('title-to-modify')
+        let newGeneratedHtml = generatedHtml.replace(/<h1 id='title-to-modify'>.*?<\/h1>/i, `<h1 id='title-to-modify'>${e.target.value}</h1>`)
+        setGeneratedHtml(newGeneratedHtml)
+        de.innerHTML = e.target.value
+    }
+
+    const handleModifyContent = (e) => {
+        setContent(e.target.value)
+        let frame = document.getElementById('iframe-to-modify')
+        let de = frame.contentWindow.document.getElementById('content-to-modify')
+        let newGeneratedHtml = generatedHtml.replace(/<p id='content-to-modify'>.*?<\/p>/i, `<p id='content-to-modify'>${e.target.value}</p>`)
+        setGeneratedHtml(newGeneratedHtml)
+        de.innerHTML = e.target.value
+    }
+
+    const sendTheHtml = () => {
+        sendHtml('type', generatedHtml)
+    }
+
     return (
         <div className="flex h-screen">
             {/* Sidebar */}
@@ -260,7 +278,7 @@ if (responseData?.text) {
 
                         {/* Info Box */}
                         <div className="bg-white border border-gray-200 rounded-md p-4 text-center text-gray-700 text-sm leading-relaxed">
-                            <textarea value={title} onChange={(e) => setTitle(e.target.value)} id="story" name="story" rows="5" cols="30">
+                            <textarea value={title} onChange={handleModifyTitle} id="story" name="story" rows="5" cols="30">
 
                             </textarea>
                         </div>
@@ -271,10 +289,22 @@ if (responseData?.text) {
 
                         {/* Logos */}
                         <div className="bg-white border border-gray-200 rounded-md p-4 text-center text-gray-700 text-sm leading-relaxed">
-                            <textarea value={content} onChange={(e) => setContent(e.target.value)} id="story" name="story" rows="5" cols="30">
+                            <textarea value={content} onChange={handleModifyContent} id="story" name="story" rows="5" cols="30">
 
                             </textarea>
                         </div>
+
+                        {/* Bouton Générer */}
+                        <button
+                            onClick={sendTheHtml}
+                            disabled={loading || !description.trim()}
+                            className={`w-full py-2 rounded-md text-white font-semibold transition ${loading || !description.trim()
+                                ? "bg-gray-400 cursor-not-allowed"
+                                : "bg-blue-600 hover:bg-blue-700"
+                                }`}
+                        >
+                            {"Envoyer"}
+                        </button>
 
                     </div> : <div className="p-6 space-y-8">
 
@@ -362,6 +392,7 @@ if (responseData?.text) {
                     <iframe
                         title="Aperçu HTML"
                         srcDoc={generatedHtml}
+                        id='iframe-to-modify'
                         className="w-full h-full rounded-md"
                         sandbox="allow-same-origin allow-scripts allow-popups allow-forms"
                     />
@@ -377,7 +408,7 @@ if (responseData?.text) {
                     >
                         Envoyer
                     </button> */}
-                    <button
+                    {/* <button
                         onClick={() => {
                             console.log("test");
                             setIsModif(true)
@@ -385,7 +416,7 @@ if (responseData?.text) {
                         className="absolute bottom-4 right-4 bg-blue-600 text-white px-5 py-2 rounded-md shadow-md hover:bg-blue-700 transition"
                     >
                         Modifier
-                    </button>
+                    </button> */}
                 </div>
             </main>
         </div>
