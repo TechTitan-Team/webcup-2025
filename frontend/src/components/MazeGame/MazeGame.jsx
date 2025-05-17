@@ -154,7 +154,7 @@ const ADDITIONAL_TOXIC_ITEMS = [
 ];
 const BONUS_ITEMS = ['Paix intérieure', 'Nouveau projet', 'Indifférence sacrée'];
 
-const Game = () => {
+const MazeGame = () => {
   const [maze, setMaze] = useState([]);
   const [playerPosition, setPlayerPosition] = useState({ x: 0, y: 1 });
   const [exitPosition, setExitPosition] = useState({ x: MAZE_WIDTH - 1, y: MAZE_HEIGHT - 2 });
@@ -430,4 +430,4 @@ const Game = () => {
   );
 };
 
-export default Game;
+export default MazeGame;
