@@ -10,7 +10,6 @@ import {
 } from "react-konva";
 import { v4 as uuidv4 } from "uuid";
 import sendData from "../../hooks/sendHTML";
-import Header from "../Layout/Header/Header";
 import { useNavigate } from "react-router-dom";
 import ShareModal from "../../common/ModalShare/ModalShare";
 import { BaseUrl } from "../../hooks/useHttps";
