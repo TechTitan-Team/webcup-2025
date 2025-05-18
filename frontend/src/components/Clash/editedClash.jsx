@@ -19,6 +19,7 @@ export default function EditableClash() {
     const [originalTitle, setOriginalTitle] = useState("");
     const [originalContent, setOriginalContent] = useState("");
     const [hasChanges, setHasChanges] = useState(false);
+    const nav = useNavigate()
 
     // Template fournie comme variable dans le composant (exemple)
     const templateData = {
@@ -171,7 +172,7 @@ export default function EditableClash() {
 
     const handleSave = () => {
         if (saveChanges()) {
-            alert("Modèle mis à jour avec succès !");
+            nav(-1)
         }
     };
 
