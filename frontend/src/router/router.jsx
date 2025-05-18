@@ -16,6 +16,7 @@ import MazeGame from "../components/MazeGame/MazeGame";
 import HallOfFame from "../components/HallOfFame/HallOfFame";
 import FameDetail from "../components/FameDetail/FameDetail";
 import EditableClash from "../components/Clash/editedClash";
+import DualIframeComponent from "../components/Clash/ViewClash";
 
 const Router = () => {
   return (
@@ -23,6 +24,7 @@ const Router = () => {
       <Routes>
         <Route path="/" element={<Home />} />
         <Route path="/clash" element={<ClashList />} />
+        <Route path="/clash/view/:id" element={<DualIframeComponent />} />
         <Route path="/clash/:templateId" element={<EditableClash />} />
         <Route path="/about" element={<About />} />
         <Route path="/app/create-ai" element={<ContentGenerator />} />
