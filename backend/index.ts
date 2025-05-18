@@ -8,13 +8,14 @@ import path from 'path';
 import userRouter from './src/router/user.router';
 import pageRouter from './src/router/page.router';
 import clashRouter from './src/router/clash.router';
+import reactionRouter from './src/router/reaction.router';
 
 const app = express();
 const port = process.env.PORT || 9002;
 
 app.use(cors())
-app.use(express.urlencoded({limit: '1gb', extended : true}))
-app.use(express.json({ limit: '1gb' }));
+app.use(express.urlencoded({extended : true}))
+app.use(express.json());
 app.use(express.static('public'));
 // @ts-ignore
 app.use(fileUpload({
@@ -36,6 +37,9 @@ app.use('/api/user', userRouter)
 app.use('/api/clash', clashRouter);
 
 app.use('/api/page', pageRouter)
+
+
+app.use('/api/reaction', reactionRouter);
 
 const localImages = process.env.ENV && process.env.ENV == "development" ? './public' : '../public'
 app.use('/public', express.static(path.join(__dirname, localImages)));

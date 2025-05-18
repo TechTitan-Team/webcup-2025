@@ -20,6 +20,10 @@ const navItems = [
     href: "/clash",
   },
   {
+    title: "Hall of Fame",
+    href: "/hall-of-fame",
+  },
+  {
     title: "Créer un template personnalisé",
     href: "/create-page",
   },

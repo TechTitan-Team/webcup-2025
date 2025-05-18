@@ -7,7 +7,13 @@ const pageModel = {
             try {
                 let result = await prisma.page.findMany({
                     orderBy: {
-                        id: "desc"
+                        Reaction: {
+                            _count: 'desc'
+                        }
+                    },
+                    include: {
+                        user: true,
+                        Reaction: true
                     }
                 })
                 resolve(result)
@@ -22,6 +28,9 @@ const pageModel = {
                 let result = await prisma.page.findUnique({
                     where: {
                         id
+                    },
+                    include: {
+                        user: true
                     }
                 })
                 resolve(result)
