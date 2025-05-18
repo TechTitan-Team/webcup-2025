@@ -3,9 +3,9 @@ import React from "react";
 const CustomButton = ({ title, icon, className }) => {
   return (
     <button
-      className={`bg-[#8C2EFF] text-[#FDFCE8] font-semibold barlow-condensed-regular text-lg px-8 py-4 rounded-full border-2 border-[#FFDD00] inline-flex items-center shadow-[6px_6px_0_#FFDD00] cursor-pointer ${className}`}
+      className={`bg-gray-800 text-white font-medium text-sm px-6 py-3 rounded-md inline-flex items-center hover:bg-gray-700 transition-colors duration-300 ${className}`}
     >
-      <span className="mr-3">{title}</span>
+      <span className="mr-2">{title}</span>
       {icon}
     </button>
   );

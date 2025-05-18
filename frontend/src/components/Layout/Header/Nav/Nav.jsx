@@ -20,20 +20,20 @@ const navItems = [
     href: "/clash",
   },
   {
-    title: "Work",
-    href: "/work",
+    title: "Créer un template personnalisé",
+    href: "/create-page",
   },
   {
-    title: "Projects",
-    href: "/projects",
+    title: "Générer un template",
+    href: "/app/create-ai",
   },
   {
-    title: "Awards",
-    href: "/awards",
+    title: "Maze Game",
+    href: "/maze-game",
   },
   {
-    title: "Contact",
-    href: "/contact",
+    title: "Se connecter",
+    href: "/signIn",
   },
 ];
 
@@ -72,9 +72,8 @@ export default function Nav() {
           })}
         </div>
         <div className={styles.footer}>
-          <a>Awwwards</a>
           <a>Instagram</a>
-          <a>Dribble</a>
+          <a>Twitter</a>
           <a>LinkedIn</a>
         </div>
       </div>
