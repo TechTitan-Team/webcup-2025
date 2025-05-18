@@ -7,10 +7,13 @@ const pageModel = {
             try {
                 let result = await prisma.page.findMany({
                     orderBy: {
-                        id: "desc"
+                        Reaction: {
+                            _count: 'desc'
+                        }
                     },
                     include: {
-                        user: true
+                        user: true,
+                        Reaction: true
                     }
                 })
                 resolve(result)

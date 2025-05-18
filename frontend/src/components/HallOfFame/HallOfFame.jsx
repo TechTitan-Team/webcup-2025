@@ -4,18 +4,27 @@ import Header from "../Layout/Header/Header";
 import { Link } from "react-router-dom";
 import axios from "axios";
 import { formateDate } from "../../services/services";
+import useHttps, { BaseUrl } from "../../hooks/useHttps";
+import useToken from "../../hooks/useToken";
 
 const HallOfFame = () => {
   const [likes, setLikes] = useState({});
   const [pages, setPages] = useState([]);
   const [loading, setLoading] = useState(true);
+  const { token } = useToken();
+  const { http } = useHttps();
 
   useEffect(() => {
     const fetchPages = async () => {
       try {
-        const response = await axios.get("http://localhost:9002/api/page");
+        const response = await http.get(`/page`);
         setPages(response.data);
-        console.log(response.data);
+        // Initialiser les likes avec le nombre de réactions existantes
+        const initialLikes = {};
+        response.data.forEach(page => {
+          initialLikes[page.id] = page.Reaction.length;
+        });
+        setLikes(initialLikes);
         setLoading(false);
       } catch (error) {
         console.error("Erreur lors de la récupération des pages:", error);
@@ -26,11 +35,27 @@ const HallOfFame = () => {
     fetchPages();
   }, []);
 
-  const handleLike = (pageId) => {
-    setLikes((prev) => ({
-      ...prev,
-      [pageId]: (prev[pageId] || 0) + 1,
-    }));
+  const handleLike = async (pageId) => {
+    try {
+      console.log({
+        id_user: parseInt(token.id),
+        id_page: pageId,
+      });
+
+      // Créer la réaction dans le backend
+      await http.post(`/reaction`, {
+        id_user: parseInt(token.id),
+        id_page: pageId,
+      });
+
+      // Mettre à jour l'état local
+      setLikes((prev) => ({
+        ...prev,
+        [pageId]: (prev[pageId] || 0) + 1,
+      }));
+    } catch (error) {
+      console.error("Erreur lors de la création du like:", error);
+    }
   };
 
   const categories = [
@@ -68,7 +93,7 @@ const HallOfFame = () => {
         </div>
 
         {/* Search Bar and Categories */}
-        <div className="mb-8 mx-3 md:mx-[100px]">
+        {/* <div className="mb-8 mx-3 md:mx-[100px]">
           <div className="flex flex-wrap gap-2 items-center mb-4">
             <div className="relative flex-grow mr-2">
               <div className="absolute inset-y-0 left-3 flex items-center pointer-events-none">
@@ -107,7 +132,7 @@ const HallOfFame = () => {
               </button>
             ))}
           </div>
-        </div>
+        </div> */}
 
         {/* Pages Section */}
         <div className="mx-3 md:mx-[100px]">
@@ -118,21 +143,27 @@ const HallOfFame = () => {
           ) : (
             <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4">
               {pages.map((page) => (
-                <Link to={`/fame-detail/${page.id}`}>
-                  <div
-                    key={page.id}
-                    className="flex items-start p-3 rounded-lg hover:bg-gray-50 cursor-pointer"
-                  >
-                    <div className="bg-blue-100 p-3 rounded-lg mr-3 relative group">
-                      <button className="flex items-center space-x-1 transition-all hover:scale-110 group">
-                        <span className="text-xl text-purple-400 group-hover:text-purple-600 transition-colors">
-                          ♡
-                        </span>
-                        <span className="text-sm font-medium text-purple-400 group-hover:text-purple-600 transition-colors">
-                          {likes[page.id] || 0}
-                        </span>
-                      </button>
-                    </div>
+                <div
+                  key={page.id}
+                  className="flex items-start p-3 rounded-lg hover:bg-gray-50 cursor-pointer"
+                >
+                  <div className="bg-blue-100 p-3 rounded-lg mr-3 relative group">
+                    <button
+                      onClick={(e) => {
+                        e.stopPropagation();
+                        handleLike(page.id);
+                      }}
+                      className="flex items-center space-x-1 transition-all hover:scale-110 group"
+                    >
+                      <span className="text-xl text-purple-400 group-hover:text-purple-600 transition-colors">
+                        ♡
+                      </span>
+                      <span className="text-sm font-medium text-purple-400 group-hover:text-purple-600 transition-colors">
+                        {likes[page.id] || 0}
+                      </span>
+                    </button>
+                  </div>
+                  <a href={`${BaseUrl + page.url}`} target="_blank">
                     <div>
                       <h3 className="font-medium text-gray-800">
                         Créer par {page.user.name}
@@ -141,8 +172,8 @@ const HallOfFame = () => {
                         Date {formateDate(page.created_at)}
                       </p>
                     </div>
-                  </div>
-                </Link>
+                  </a>
+                </div>
               ))}
             </div>
           )}
