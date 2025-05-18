@@ -25,6 +25,18 @@ const clashController = {
             res.status(500).send(error)
         }
     },
+    addInteraction: async (req: Request, res: Response) => {
+        try {
+            let {id, type} = req.body
+            console.log("id");
+            
+            let result = await clashModel.incrementLike(parseInt(id), type);
+            res.status(200).send(result)
+        } catch (error: any) {
+            console.log(error)
+            res.status(500).send(error)
+        }
+    },
     getOne: async (req: Request, res: Response) => {
         try {
             let { id } = req.params

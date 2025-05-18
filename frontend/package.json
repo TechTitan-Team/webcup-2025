@@ -12,6 +12,7 @@
   "dependencies": {
     "@heroicons/react": "^2.2.0",
     "@material-tailwind/react": "^2.1.10",
+    "@tailwindcss/postcss": "^4.1.7",
     "@tailwindcss/vite": "^4.1.6",
     "@tinymce/tinymce-react": "^6.1.0",
     "autoprefixer": "^10.4.21",

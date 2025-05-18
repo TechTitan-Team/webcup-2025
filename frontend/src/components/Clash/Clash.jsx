@@ -33,7 +33,8 @@ const ClashList = () => {
                     month: 'long',
                     year: 'numeric'
                 }),
-                status: clash.status || 'En attente'
+                status: clash.status || 'En attente',
+                nbr_like: clash.nbr_like1 + clash.nbr_like2
             }));
             setClashes(formattedClashes);
         } catch (error) {
@@ -245,7 +246,7 @@ const ClashList = () => {
                                         layout
                                         whileHover={{ scale: 1.02 }}
                                     >
-                                        <Link to={viewMode === "mine" ? `/clash/${clash.id}` : ''}>
+                                        <Link to={viewMode === "mine" ? `/clash/${clash.id}` : `/clash/view/${clash.id}`}>
                                             <div className="absolute top-0 right-0 w-24 h-24 bg-gradient-to-bl from-indigo-100 to-transparent -mr-12 -mt-12 rounded-full opacity-70"></div>
 
                                             <div className="flex justify-between items-start mb-4">
@@ -272,15 +273,11 @@ const ClashList = () => {
                                                     <svg xmlns="http://www.w3.org/2000/svg" className="h-5 w-5 mr-2 text-indigo-500" viewBox="0 0 20 20" fill="currentColor">
                                                         <path d="M13 6a3 3 0 11-6 0 3 3 0 016 0zM18 8a2 2 0 11-4 0 2 2 0 014 0zM14 15a4 4 0 00-8 0v3h8v-3zM6 8a2 2 0 11-4 0 2 2 0 014 0zM16 18v-3a5.972 5.972 0 00-.75-2.906A3.005 3.005 0 0119 15v3h-3zM4.75 12.094A5.973 5.973 0 004 15v3H1v-3a3 3 0 013.75-2.906z" />
                                                     </svg>
-                                                    <span>{clash.participants || 2} participants</span>
+                                                    <span>{clash.nbr_like} reactions</span>
                                                 </div>
 
                                                 <button
                                                     className="text-indigo-600 hover:text-indigo-800 font-medium text-sm flex items-center"
-                                                    onClick={() => {
-                                                        // Navigation vers la page de détails du clash
-                                                        window.location.href = `/clash/${clash.id}`;
-                                                    }}
                                                 >
                                                     Voir
                                                     <svg xmlns="http://www.w3.org/2000/svg" className="h-4 w-4 ml-1" viewBox="0 0 20 20" fill="currentColor">

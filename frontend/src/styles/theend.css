@@ -1,0 +1,377 @@
+@import url("https://fonts.googleapis.com/css2?family=Montserrat:wght@500;600;700;800&family=Raleway:wght@300;400;500;600&display=swap");
+
+@import "tailwindcss";
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  overflow-x: hidden;
+  @apply bg-white text-gray-800;
+}
+
+/* Reduced section title sizes */
+h2.section-title {
+  @apply text-2xl md:text-4xl;
+}
+
+/* Cursor effects */
+.custom-cursor {
+  position: fixed;
+  width: 20px;
+  height: 20px;
+  border-radius: 50%;
+  background-color: rgba(79, 70, 229, 0.15);
+  transform: translate(-50%, -50%);
+  pointer-events: none;
+  z-index: 9999;
+  transition: width 0.3s, height 0.3s, background-color 0.3s;
+}
+
+.cursor-trail {
+  position: fixed;
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  background-color: rgba(79, 70, 229, 0.1);
+  pointer-events: none;
+  z-index: 9998;
+  transition: transform 0.1s, opacity 0.5s;
+}
+
+/* Advanced animations */
+@keyframes float {
+  0%,
+  100% {
+    transform: translateY(0) rotate(0deg);
+  }
+  25% {
+    transform: translateY(-8px) rotate(1deg);
+  }
+  50% {
+    transform: translateY(0) rotate(0deg);
+  }
+  75% {
+    transform: translateY(6px) rotate(-1deg);
+  }
+}
+
+@keyframes shimmer {
+  0% {
+    background-position: -100% 0;
+  }
+  100% {
+    background-position: 200% 0;
+  }
+}
+
+@keyframes fadeInUp {
+  from {
+    opacity: 0;
+    transform: translateY(15px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes pulse {
+  0%,
+  100% {
+    opacity: 0.4;
+  }
+  50% {
+    opacity: 0.7;
+  }
+}
+
+@keyframes spin-slow {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+.animate-fadeInUp {
+  animation: fadeInUp 0.8s ease forwards;
+}
+
+.animate-pulse-slow {
+  animation: pulse 4s infinite ease-in-out;
+}
+
+.animate-spin-slow {
+  animation: spin-slow 30s linear infinite;
+}
+
+.shimmer-effect {
+  background: linear-gradient(
+    90deg,
+    rgba(79, 70, 229, 0) 0%,
+    rgba(79, 70, 229, 0.08) 50%,
+    rgba(79, 70, 229, 0) 100%
+  );
+  background-size: 200% 100%;
+  animation: shimmer 3s infinite;
+}
+
+.animate-float {
+  animation: float 10s ease-in-out infinite;
+}
+
+/* Parallax scrolling */
+.parallax {
+  transition: transform 0.7s cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+/* Text reveal animations */
+.text-reveal {
+  overflow: hidden;
+}
+
+.text-reveal span {
+  display: inline-block;
+  transform: translateY(100%);
+  opacity: 0;
+  transition: transform 1s cubic-bezier(0.22, 1, 0.36, 1),
+    opacity 1s cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+.text-reveal.active span {
+  transform: translateY(0);
+  opacity: 1;
+}
+
+/* Staggered animation for children */
+.stagger-children > * {
+  opacity: 0;
+  transform: translateY(15px);
+  transition: opacity 0.8s cubic-bezier(0.22, 1, 0.36, 1),
+    transform 0.8s cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+.stagger-children.active > *:nth-child(1) {
+  transition-delay: 0.1s;
+}
+
+.stagger-children.active > *:nth-child(2) {
+  transition-delay: 0.2s;
+}
+
+.stagger-children.active > *:nth-child(3) {
+  transition-delay: 0.3s;
+}
+
+.stagger-children.active > *:nth-child(4) {
+  transition-delay: 0.4s;
+}
+
+.stagger-children.active > *:nth-child(5) {
+  transition-delay: 0.5s;
+}
+
+.stagger-children.active > *:nth-child(6) {
+  transition-delay: 0.6s;
+}
+
+.stagger-children.active > *:nth-child(7) {
+  transition-delay: 0.7s;
+}
+
+.stagger-children.active > *:nth-child(8) {
+  transition-delay: 0.8s;
+}
+
+.stagger-children.active > * {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+/* Scroll progress indicator */
+.scroll-progress {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 0%;
+  height: 2px;
+  background: linear-gradient(90deg, #818cf8, #6366f1);
+  z-index: 9999;
+  transition: width 0.1s;
+}
+
+/* Navigation highlight effect */
+.nav-highlight {
+  position: relative;
+}
+
+.nav-highlight::after {
+  content: "";
+  position: absolute;
+  bottom: -4px;
+  left: 0;
+  width: 0;
+  height: 2px;
+  background: linear-gradient(90deg, #818cf8, #6366f1);
+  transition: width 0.3s ease;
+}
+
+.nav-highlight:hover::after,
+.nav-highlight.active::after {
+  width: 100%;
+}
+
+/* Sticky navbar transition */
+.navbar {
+  transition: background-color 0.3s, padding 0.3s, box-shadow 0.3s;
+}
+
+.navbar.scrolled {
+  background-color: rgba(255, 255, 255, 0.95);
+  padding-top: 0.5rem;
+  padding-bottom: 0.5rem;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.03);
+  backdrop-filter: blur(8px);
+}
+
+/* Price toggle switch */
+.toggle-checkbox:checked {
+  right: 0;
+  border-color: #818cf8;
+}
+
+.toggle-checkbox:checked + .toggle-label {
+  background: linear-gradient(90deg, #818cf8, #6366f1);
+}
+
+/* Magnetic buttons */
+.magnetic-btn {
+  transition: transform 0.3s cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+/* Reveal animation for sections */
+.reveal-section {
+  clip-path: inset(0 100% 0 0);
+  transition: clip-path 1.2s cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+.reveal-section.active {
+  clip-path: inset(0 0 0 0);
+}
+
+/* 3D card effect */
+.card-3d {
+  transform-style: preserve-3d;
+  perspective: 1000px;
+  transition: transform 0.5s;
+}
+
+.card-3d-content {
+  transform: translateZ(10px);
+  transition: transform 0.5s;
+}
+
+/* Input focus effects */
+.input-focus-effect {
+  position: relative;
+  border-bottom: 1px solid rgba(99, 102, 241, 0.2);
+}
+
+.input-focus-effect::after {
+  content: "";
+  position: absolute;
+  width: 0;
+  height: 2px;
+  bottom: -1px;
+  left: 0;
+  background: linear-gradient(90deg, #818cf8, #6366f1);
+  transition: width 0.3s ease;
+}
+
+.input-focus-effect:focus-within::after {
+  width: 100%;
+}
+
+/* Hero section gradient overlay */
+.hero-gradient {
+  background: linear-gradient(
+    135deg, 
+    rgba(224, 231, 255, 0.9) 0%,
+    rgba(224, 231, 255, 0.9) 50%,
+    rgba(224, 242, 254, 0.9) 100%
+  );
+}
+
+/* Pricing card hover effect */
+.pricing-card {
+  transition: all 0.3s ease;
+  border: 1px solid rgba(224, 231, 255, 0.4);
+}
+
+.pricing-card:hover {
+  transform: translateY(-8px);
+  box-shadow: 0 20px 25px -5px rgba(79, 70, 229, 0.08), 
+              0 10px 10px -5px rgba(79, 70, 229, 0.03);
+  border-color: rgba(79, 70, 229, 0.2);
+}
+
+/* Animated background */
+.animated-bg {
+  position: absolute;
+  inset: 0;
+  overflow: hidden;
+  pointer-events: none;
+}
+
+.animated-bg-shape {
+  position: absolute;
+  border-radius: 50%;
+  filter: blur(60px);
+}
+
+/* Custom scrollbar */
+::-webkit-scrollbar {
+  width: 10px;
+}
+
+::-webkit-scrollbar-track {
+  background: #f9fafb;
+}
+
+::-webkit-scrollbar-thumb {
+  background: linear-gradient(180deg, #a5b4fc, #818cf8);
+  border-radius: 6px;
+  border: 3px solid #f9fafb;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: linear-gradient(180deg, #818cf8, #6366f1);
+}
+
+/* Custom font classes */
+.font-display {
+  font-family: "Montserrat", sans-serif;
+}
+
+.font-body {
+  font-family: "Raleway", sans-serif;
+}
+
+/* Reduced section title sizes for the specific sections */
+#styles h2, 
+#fonctionnement h2, 
+#tarifs h2, 
+#exemples h2, 
+#contact h2 {
+  @apply text-3xl md:text-4xl lg:text-5xl;
+}
+
+/* Smooth transition for all elements */
+* {
+  transition-property: background-color, border-color, color, fill, stroke, opacity, box-shadow, transform, filter, backdrop-filter;
+  transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
+  transition-duration: 150ms;
+}
