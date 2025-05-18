@@ -45,8 +45,8 @@ const PricingSection = () => {
               <p className="text-sm opacity-70 mb-6">Pour un adieu simple mais efficace</p>
               
               <div className="flex items-end mb-8">
-                {!isYearly && <span className="text-5xl font-display font-bold text-soft-gold">9€</span>}
-                {isYearly && <span className="text-5xl font-display font-bold text-soft-gold">7€</span>}
+                {!isYearly && <span className="text-5xl font-display font-bold text-soft-gold">5000ar</span>}
+                {isYearly && <span className="text-5xl font-display font-bold text-soft-gold">4000ar</span>}
                 <span className="text-lg opacity-70 ml-1">/mois</span>
               </div>
               
@@ -100,8 +100,8 @@ const PricingSection = () => {
               <p className="text-sm opacity-70 mb-6">Pour un adieu mémorable et percutant</p>
               
               <div className="flex items-end mb-8">
-                {!isYearly && <span className="text-5xl font-display font-bold text-soft-gold">19€</span>}
-                {isYearly && <span className="text-5xl font-display font-bold text-soft-gold">15€</span>}
+                {!isYearly && <span className="text-5xl font-display font-bold text-soft-gold">10000ar</span>}
+                {isYearly && <span className="text-5xl font-display font-bold text-soft-gold">8000ar</span>}
                 <span className="text-lg opacity-70 ml-1">/mois</span>
               </div>
               
@@ -151,8 +151,8 @@ const PricingSection = () => {
               <p className="text-sm opacity-70 mb-6">Pour un départ spectaculaire</p>
               
               <div className="flex items-end mb-8">
-                {!isYearly && <span className="text-5xl font-display font-bold text-soft-gold">39€</span>}
-                {isYearly && <span className="text-5xl font-display font-bold text-soft-gold">31€</span>}
+                {!isYearly && <span className="text-5xl font-display font-bold text-soft-gold">15000ar</span>}
+                {isYearly && <span className="text-5xl font-display font-bold text-soft-gold">12000ar</span>}
                 <span className="text-lg opacity-70 ml-1">/mois</span>
               </div>
               
