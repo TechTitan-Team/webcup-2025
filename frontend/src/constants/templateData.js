@@ -793,6 +793,7 @@ export const templates = [
         author: 'Figma',
         likes: 320,
         views: 900,
+        price: 5000,
         image: image10,
         defaultTitle: 'Clôture de notre collaboration',
         defaultContent:
@@ -850,6 +851,7 @@ export const templates = [
         author: 'Figma',
         likes: 450,
         views: 1150,
+        price: 15000,
         image: image11,
         defaultTitle: 'Je suis désolé(e)',
         defaultContent:
@@ -909,6 +911,7 @@ export const templates = [
         likes: 200,
         views: 580,
         image: image12,
+        price: 10000,
         defaultTitle: 'Merci et au revoir',
         defaultContent:
             "Après mûre réflexion, j'ai décidé de fermer ce blog. Ce fut une aventure incroyable, pleine de partage et d'apprentissages. Je remercie tous mes lecteurs pour leur fidélité et leur soutien. Ce n'est qu'un au revoir, peut-être à bientôt dans un autre espace.",
