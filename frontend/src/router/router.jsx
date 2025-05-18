@@ -1,4 +1,4 @@
-import { BrowserRouter, Route, Routes } from "react-router-dom";
+import { BrowserRouter, Route, Routes, Navigate } from "react-router-dom";
 import Home from "../components/Home/Home";
 import AuthPage from "../components/Auth/AuthPage";
 import PageCore from "../components/PageCore/PageCore";
@@ -17,17 +17,65 @@ import FameDetail from "../components/FameDetail/FameDetail";
 import EditableClash from "../components/Clash/editedClash";
 import DualIframeComponent from "../components/Clash/ViewClash";
 
+// Protected Route component
+const ProtectedRoute = ({ children }) => {
+  // Replace this with your actual authentication logic
+  const isAuthenticated = localStorage.getItem("token") !== null;
+
+  if (!isAuthenticated) {
+    // Redirect to login if not authenticated
+    return <Navigate to="/signIn" replace />;
+  }
+
+  return children;
+};
+
 const Router = () => {
   return (
     <BrowserRouter>
       <Routes>
         <Route path="/" element={<Home />} />
-        <Route path="/clash" element={<ClashList />} />
-        <Route path="/clash/view/:id" element={<DualIframeComponent />} />
-        <Route path="/clash/:templateId" element={<EditableClash />} />
-        <Route path="/app/create-ai" element={<ContentGenerator />} />
+        <Route
+          path="/clash"
+          element={
+            <ProtectedRoute>
+              <ClashList />
+            </ProtectedRoute>
+          }
+        />
+        <Route
+          path="/clash/view/:id"
+          element={
+            <ProtectedRoute>
+              <DualIframeComponent />
+            </ProtectedRoute>
+          }
+        />
+        <Route
+          path="/clash/:templateId"
+          element={
+            <ProtectedRoute>
+              <EditableClash />
+            </ProtectedRoute>
+          }
+        />
+        <Route
+          path="/app/create-ai"
+          element={
+            <ProtectedRoute>
+              <ContentGenerator />
+            </ProtectedRoute>
+          }
+        />
         <Route path="/signIn" element={<AuthPage />} />
-        <Route path="/create-page" element={<PageCore />} />
+        <Route
+          path="/create-page"
+          element={
+            <ProtectedRoute>
+              <PageCore />
+            </ProtectedRoute>
+          }
+        />
         <Route path="/dashboard" element={<HomeDashboard />}>
           <Route index element={<Dashboards />} />
           <Route path="list" element={<ListUser />} />
@@ -36,19 +84,23 @@ const Router = () => {
         <Route
           path="/list-template"
           element={
+            <ProtectedRoute>
               <ListeTemplate />
+            </ProtectedRoute>
           }
         />
         <Route
           path="/app/template/:templateId"
           element={
+            <ProtectedRoute>
               <EditableLetter />
+            </ProtectedRoute>
           }
         />
-         <Route path='/bridge-game' element={<BridgeGame />} />
-         <Route path='/maze-game' element={<MazeGame />} />
-         <Route path='/hall-of-fame' element={<HallOfFame />} />
-         <Route path='/fame-detail/:id' element={<FameDetail />} />
+        <Route path="/bridge-game" element={<BridgeGame />} />
+        <Route path="/maze-game" element={<MazeGame />} />
+        <Route path="/hall-of-fame" element={<HallOfFame />} />
+        <Route path="/fame-detail/:id" element={<FameDetail />} />
       </Routes>
     </BrowserRouter>
   );
