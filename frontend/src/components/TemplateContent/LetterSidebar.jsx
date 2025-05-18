@@ -61,7 +61,7 @@ export default function LetterSidebar({
         ></textarea>
       </div>
 
-      <div className="flex space-x-2">
+      {/* <div className="flex space-x-2">
         <button
           onClick={handleReset}
           className="flex-1 bg-gray-200 text-gray-800 px-4 py-2 rounded-md hover:bg-gray-300 transition"
@@ -79,7 +79,7 @@ export default function LetterSidebar({
         >
           Enregistrer
         </button>
-      </div>
+      </div> */}
     </div>
   );
 } 

@@ -12,7 +12,8 @@ import { v4 as uuidv4 } from "uuid";
 import sendData from "../../hooks/sendHTML";
 import Header from "../Layout/Header/Header";
 import { useNavigate } from "react-router-dom";
-
+import ShareModal from "../../common/ModalShare/ModalShare";
+import { BaseUrl } from "../../hooks/useHttps";
 const CanvaEditor = () => {
   const [elements, setElements] = useState([]);
   const [selectedId, setSelectedId] = useState(null);
@@ -666,7 +667,7 @@ const CanvaEditor = () => {
     setBgSettingsVisible(false);
   };
 
-  const exportToHTML = () => {
+  const exportToHTML = async() => {
     // Create HTML content based on the elements
     let htmlContent = `
 <!DOCTYPE html>
@@ -804,7 +805,12 @@ const CanvaEditor = () => {
     // document.body.appendChild(a);
     // a.click();
 
-    sendHtml("dramatique", htmlContent);
+    await sendHtml("dramatique", htmlContent).then((res)=>{
+      setShareUrl(BaseUrl + res)
+      setIsShareModalOpen(true)
+    }).catch((err)=>{
+      console.log(err);
+    });
 
     // Clean up
     setTimeout(() => {
@@ -909,9 +915,17 @@ const CanvaEditor = () => {
     );
   };
 
+  const [isShareModalOpen, setIsShareModalOpen] = useState(false)
+  const [shareUrl, setShareUrl] = useState("")
+
   return (
     <div className="relative h-screen w-screen overflow-hidden bg-gray-100 text-gray-500">
       {/* Hidden file inputs */}
+      <ShareModal
+        isOpen={isShareModalOpen}
+        onClose={() => setIsShareModalOpen(false)}
+        shareUrl={shareUrl}
+      />
       <input
         type="file"
         ref={fileInputRef}
