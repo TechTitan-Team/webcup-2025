@@ -14,6 +14,8 @@ import EditableLetter from "../components/TemplateContent/EditableLetter";
 import Layout from "../components/Layout/Layout";
 import BridgeGame from "../components/BridgeGame/BridgeGame";
 import MazeGame from "../components/MazeGame/MazeGame";
+import HallOfFame from "../components/HallOfFame/HallOfFame";
+import FameDetail from "../components/FameDetail/FameDetail";
 
 const Router = () => {
   return (
@@ -44,6 +46,8 @@ const Router = () => {
         />
          <Route path='/bridge-game' element={<BridgeGame />} />
          <Route path='/maze-game' element={<MazeGame />} />
+         <Route path='/hall-of-fame' element={<HallOfFame />} />
+         <Route path='/fame-detail/:id' element={<FameDetail />} />
       </Routes>
     </BrowserRouter>
   );

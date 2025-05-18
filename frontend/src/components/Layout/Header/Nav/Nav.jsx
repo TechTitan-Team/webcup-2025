@@ -20,8 +20,8 @@ const navItems = [
     href: "/clash",
   },
   {
-    title: "Work",
-    href: "/work",
+    title: "Hall of Fame",
+    href: "/hall-of-fame",
   },
   {
     title: "Projects",

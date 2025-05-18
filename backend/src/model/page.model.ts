@@ -8,6 +8,9 @@ const pageModel = {
                 let result = await prisma.page.findMany({
                     orderBy: {
                         id: "desc"
+                    },
+                    include: {
+                        user: true
                     }
                 })
                 resolve(result)
@@ -22,6 +25,9 @@ const pageModel = {
                 let result = await prisma.page.findUnique({
                     where: {
                         id
+                    },
+                    include: {
+                        user: true
                     }
                 })
                 resolve(result)

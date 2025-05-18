@@ -20,17 +20,30 @@ model User {
 	Clash1 Clash[] @relation(name: "user2")
 
 	Clash2 Clash[] @relation(name: "user1")
+
+	Reaction Reaction[]
+}
+
+model Reaction {
+  id	Int	@id	@default(autoincrement())
+  created_at	DateTime	@default(now())
+	id_user	Int	
+	id_page	Int	
+	user  User  @relation(fields: [id_user], references: [id], onDelete: Cascade, onUpdate: Cascade)
+	page  Page  @relation(fields: [id_page], references: [id], onDelete: Cascade, onUpdate: Cascade)
 }
   
 model Page {
   id	Int	@id	@default(autoincrement())
   created_at	DateTime	@default(now())
-	url	String	@default("")
+  url	String	@default("")
 	type	String	
 	id_user	Int
   user  User  @relation(fields: [id_user], references: [id], onDelete: Cascade, onUpdate: Cascade)
 	Clash1 Clash[] @relation(name: "page1")
 	Clash2 Clash[] @relation(name: "page2")
+
+	Reaction Reaction[]
 }
   
 model Clash {
