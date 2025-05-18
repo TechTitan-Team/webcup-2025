@@ -5,6 +5,7 @@ import ModalClash from '../../common/ModalClash/ModalClash';
 import useHttps from '../../hooks/useHttps';
 import useToken from '../../hooks/useToken'; // Ajout de l'import pour useToken
 import { motion, AnimatePresence } from 'framer-motion';
+import { Link } from 'react-router-dom';
 
 const ClashList = () => {
     const { http } = useHttps();
@@ -145,30 +146,28 @@ const ClashList = () => {
                         <div className="flex flex-col sm:flex-row gap-3">
                             {/* Boutons de filtrage */}
                             <div className="flex bg-white p-1 rounded-full shadow-md mb-4 sm:mb-0 mr-0 sm:mr-4">
-                                <button 
-                                    className={`px-4 py-2 rounded-full text-sm font-medium transition-all duration-200 ${
-                                        viewMode === 'all' 
-                                            ? 'bg-gradient-to-r from-purple-500 to-indigo-500 text-white shadow-sm' 
+                                <button
+                                    className={`px-4 py-2 rounded-full text-sm font-medium transition-all duration-200 ${viewMode === 'all'
+                                            ? 'bg-gradient-to-r from-purple-500 to-indigo-500 text-white shadow-sm'
                                             : 'text-gray-600 hover:text-indigo-600'
-                                    }`}
+                                        }`}
                                     onClick={() => toggleViewMode('all')}
                                 >
                                     Tous les clashs
                                 </button>
-                                <button 
-                                    className={`px-4 py-2 rounded-full text-sm font-medium transition-all duration-200 ${
-                                        viewMode === 'mine' 
-                                            ? 'bg-gradient-to-r from-purple-500 to-indigo-500 text-white shadow-sm' 
+                                <button
+                                    className={`px-4 py-2 rounded-full text-sm font-medium transition-all duration-200 ${viewMode === 'mine'
+                                            ? 'bg-gradient-to-r from-purple-500 to-indigo-500 text-white shadow-sm'
                                             : 'text-gray-600 hover:text-indigo-600'
-                                    }`}
+                                        }`}
                                     onClick={() => toggleViewMode('mine')}
                                 >
                                     Mes clashs
                                 </button>
                             </div>
-                            
-                            <button 
-                                onClick={openCreateModal} 
+
+                            <button
+                                onClick={openCreateModal}
                                 className="px-5 py-2.5 md:px-6 md:py-3 bg-gradient-to-r from-purple-600 to-indigo-600 text-white font-medium rounded-full shadow-lg hover:shadow-xl transform hover:-translate-y-1 transition duration-300 flex items-center gap-2"
                             >
                                 <svg xmlns="http://www.w3.org/2000/svg" className="h-5 w-5" viewBox="0 0 20 20" fill="currentColor">
@@ -198,7 +197,7 @@ const ClashList = () => {
                             </div>
                             <h3 className="text-xl font-semibold text-gray-800 mb-2">Chargement des clashs...</h3>
                             <p className="text-gray-500 text-center">
-                                {viewMode === 'all' 
+                                {viewMode === 'all'
                                     ? 'Nous récupérons la liste de tous les clashs disponibles.'
                                     : 'Nous récupérons la liste de vos clashs.'}
                             </p>
@@ -211,8 +210,8 @@ const ClashList = () => {
                                 </svg>
                             </div>
                             <h3 className="text-xl font-bold text-gray-800 mb-2">
-                                {viewMode === 'all' 
-                                    ? 'Aucun clash disponible' 
+                                {viewMode === 'all'
+                                    ? 'Aucun clash disponible'
                                     : 'Vous n\'avez pas encore de clashs'}
                             </h3>
                             <p className="text-gray-600 mb-6">
@@ -220,8 +219,8 @@ const ClashList = () => {
                                     ? 'Soyez le premier à créer un clash et à défier quelqu\'un !'
                                     : 'Créez un clash maintenant pour défier un autre utilisateur.'}
                             </p>
-                            <button 
-                                onClick={openCreateModal} 
+                            <button
+                                onClick={openCreateModal}
                                 className="px-6 py-3 bg-gradient-to-r from-purple-600 to-indigo-600 text-white font-medium rounded-lg shadow hover:shadow-lg transition duration-200 inline-flex items-center"
                             >
                                 <svg xmlns="http://www.w3.org/2000/svg" className="h-5 w-5 mr-2" viewBox="0 0 20 20" fill="currentColor">
@@ -231,7 +230,7 @@ const ClashList = () => {
                             </button>
                         </div>
                     ) : (
-                        <motion.div 
+                        <motion.div
                             className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 md:gap-8"
                             variants={containerVariants}
                             initial="hidden"
@@ -246,51 +245,53 @@ const ClashList = () => {
                                         layout
                                         whileHover={{ scale: 1.02 }}
                                     >
-                                        <div className="absolute top-0 right-0 w-24 h-24 bg-gradient-to-bl from-indigo-100 to-transparent -mr-12 -mt-12 rounded-full opacity-70"></div>
-                                        
-                                        <div className="flex justify-between items-start mb-4">
-                                            <span className="inline-block px-3 py-1 bg-indigo-100 text-indigo-600 rounded-full text-xs font-semibold">
-                                                {clash.date}
-                                            </span>
-                                            
-                                            {clash.status && (
-                                                <span className={`inline-block px-3 py-1 rounded-full text-xs font-semibold ${
-                                                    clash.status === 'En cours' ? 'bg-green-100 text-green-600' :
-                                                    clash.status === 'Terminé' ? 'bg-gray-100 text-gray-600' :
-                                                    'bg-yellow-100 text-yellow-600'
-                                                }`}>
-                                                    {clash.status}
+                                        <Link to={viewMode === "mine" ? `/clash/${clash.id}` : ''}>
+                                            <div className="absolute top-0 right-0 w-24 h-24 bg-gradient-to-bl from-indigo-100 to-transparent -mr-12 -mt-12 rounded-full opacity-70"></div>
+
+                                            <div className="flex justify-between items-start mb-4">
+                                                <span className="inline-block px-3 py-1 bg-indigo-100 text-indigo-600 rounded-full text-xs font-semibold">
+                                                    {clash.date}
                                                 </span>
-                                            )}
-                                        </div>
-                                        
-                                        <h2 className="text-xl font-bold text-gray-800 mb-3 group-hover:text-indigo-600 transition duration-300">
-                                            {clash.title}
-                                        </h2>
-                                        
-                                        <div className="flex items-center justify-between mt-4">
-                                            <div className="flex items-center text-gray-500">
-                                                <svg xmlns="http://www.w3.org/2000/svg" className="h-5 w-5 mr-2 text-indigo-500" viewBox="0 0 20 20" fill="currentColor">
-                                                    <path d="M13 6a3 3 0 11-6 0 3 3 0 016 0zM18 8a2 2 0 11-4 0 2 2 0 014 0zM14 15a4 4 0 00-8 0v3h8v-3zM6 8a2 2 0 11-4 0 2 2 0 014 0zM16 18v-3a5.972 5.972 0 00-.75-2.906A3.005 3.005 0 0119 15v3h-3zM4.75 12.094A5.973 5.973 0 004 15v3H1v-3a3 3 0 013.75-2.906z" />
-                                                </svg>
-                                                <span>{clash.participants || 2} participants</span>
+
+                                                {clash.status && (
+                                                    <span className={`inline-block px-3 py-1 rounded-full text-xs font-semibold ${clash.status === 'En cours' ? 'bg-green-100 text-green-600' :
+                                                            clash.status === 'Terminé' ? 'bg-gray-100 text-gray-600' :
+                                                                'bg-yellow-100 text-yellow-600'
+                                                        }`}>
+                                                        {clash.status}
+                                                    </span>
+                                                )}
                                             </div>
-                                            
-                                            <button 
-                                                className="text-indigo-600 hover:text-indigo-800 font-medium text-sm flex items-center"
-                                                onClick={() => {
-                                                    // Navigation vers la page de détails du clash
-                                                    window.location.href = `/clash/${clash.id}`;
-                                                }}
-                                            >
-                                                Voir
-                                                <svg xmlns="http://www.w3.org/2000/svg" className="h-4 w-4 ml-1" viewBox="0 0 20 20" fill="currentColor">
-                                                    <path fillRule="evenodd" d="M7.293 14.707a1 1 0 010-1.414L10.586 10 7.293 6.707a1 1 0 011.414-1.414l4 4a1 1 0 010 1.414l-4 4a1 1 0 01-1.414 0z" clipRule="evenodd" />
-                                                </svg>
-                                            </button>
-                                        </div>
-                                        
-                                        <div className="absolute bottom-0 left-0 h-1 bg-gradient-to-r from-purple-500 to-indigo-500 w-0 group-hover:w-full transition-all duration-300"></div>
+
+                                            <h2 className="text-xl font-bold text-gray-800 mb-3 group-hover:text-indigo-600 transition duration-300">
+                                                {clash.title}
+                                            </h2>
+
+                                            <div className="flex items-center justify-between mt-4">
+                                                <div className="flex items-center text-gray-500">
+                                                    <svg xmlns="http://www.w3.org/2000/svg" className="h-5 w-5 mr-2 text-indigo-500" viewBox="0 0 20 20" fill="currentColor">
+                                                        <path d="M13 6a3 3 0 11-6 0 3 3 0 016 0zM18 8a2 2 0 11-4 0 2 2 0 014 0zM14 15a4 4 0 00-8 0v3h8v-3zM6 8a2 2 0 11-4 0 2 2 0 014 0zM16 18v-3a5.972 5.972 0 00-.75-2.906A3.005 3.005 0 0119 15v3h-3zM4.75 12.094A5.973 5.973 0 004 15v3H1v-3a3 3 0 013.75-2.906z" />
+                                                    </svg>
+                                                    <span>{clash.participants || 2} participants</span>
+                                                </div>
+
+                                                <button
+                                                    className="text-indigo-600 hover:text-indigo-800 font-medium text-sm flex items-center"
+                                                    onClick={() => {
+                                                        // Navigation vers la page de détails du clash
+                                                        window.location.href = `/clash/${clash.id}`;
+                                                    }}
+                                                >
+                                                    Voir
+                                                    <svg xmlns="http://www.w3.org/2000/svg" className="h-4 w-4 ml-1" viewBox="0 0 20 20" fill="currentColor">
+                                                        <path fillRule="evenodd" d="M7.293 14.707a1 1 0 010-1.414L10.586 10 7.293 6.707a1 1 0 011.414-1.414l4 4a1 1 0 010 1.414l-4 4a1 1 0 01-1.414 0z" clipRule="evenodd" />
+                                                    </svg>
+                                                </button>
+                                            </div>
+
+                                            <div className="absolute bottom-0 left-0 h-1 bg-gradient-to-r from-purple-500 to-indigo-500 w-0 group-hover:w-full transition-all duration-300"></div>
+                                        </Link>
+
                                     </motion.div>
                                 ))}
                             </AnimatePresence>
@@ -298,12 +299,12 @@ const ClashList = () => {
                     )}
                 </div>
             </div>
-            
+
             {/* Modal pour créer un clash */}
-            <ModalClash 
-                isOpen={isModalOpen} 
-                onClose={closeModal} 
-                onConfirm={handleClashCreated} 
+            <ModalClash
+                isOpen={isModalOpen}
+                onClose={closeModal}
+                onConfirm={handleClashCreated}
             />
         </Layout>
     );

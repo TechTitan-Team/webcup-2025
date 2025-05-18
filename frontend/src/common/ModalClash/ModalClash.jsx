@@ -219,79 +219,7 @@ const ModalClash = ({ isOpen, onClose, onConfirm }) => {
                                 </div>
                             )}
 
-                            {isSubmitting && !clashCreated ? (
-                                <div className="py-12 flex flex-col items-center justify-center">
-                                    <div className="w-16 h-16 mb-6">
-                                        <svg className="animate-spin w-full h-full text-indigo-600" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24">
-                                            <circle className="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" strokeWidth="4"></circle>
-                                            <path className="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"></path>
-                                        </svg>
-                                    </div>
-                                    <h3 className="text-xl font-semibold text-gray-800 mb-2">Création en cours...</h3>
-                                    <p className="text-gray-500 text-center">
-                                        Nous préparons votre clash contre {searchTerm}.
-                                    </p>
-                                </div>
-                            ) : clashCreated && createdClashDetails ? (
-                                <motion.div 
-                                    className="py-6"
-                                    initial={{ opacity: 0 }}
-                                    animate={{ opacity: 1 }}
-                                    transition={{ duration: 0.3 }}
-                                >
-                                    <div className="flex justify-center mb-6">
-                                        <div className="w-16 h-16 bg-green-100 rounded-full flex items-center justify-center">
-                                            <svg xmlns="http://www.w3.org/2000/svg" className="h-10 w-10 text-green-500" viewBox="0 0 20 20" fill="currentColor">
-                                                <path fillRule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clipRule="evenodd" />
-                                            </svg>
-                                        </div>
-                                    </div>
-                                    
-                                    <div className="text-center mb-6">
-                                        <h3 className="text-xl font-bold text-gray-800 mb-2">
-                                            Votre clash a été créé avec succès!
-                                        </h3>
-                                        <p className="text-gray-500">
-                                            Préparez-vous pour un affrontement épique.
-                                        </p>
-                                    </div>
-                                    
-                                    <div className="bg-gradient-to-r from-purple-50 to-indigo-50 rounded-xl p-6 mb-6">
-                                        <div className="flex items-center mb-4">
-                                            <div className="flex-shrink-0 h-10 w-10 rounded-full bg-gradient-to-r from-purple-500 to-indigo-500 flex items-center justify-center text-white font-bold text-lg">
-                                                #
-                                            </div>
-                                            <div className="ml-3">
-                                                <p className="text-xs text-gray-500">ID du clash</p>
-                                                <p className="font-mono text-gray-700">{createdClashDetails.id}</p>
-                                            </div>
-                                        </div>
-                                        
-                                        <h4 className="text-xl font-bold text-gray-800 mb-3">
-                                            {createdClashDetails.title}
-                                        </h4>
-                                        
-                                        <div className="flex items-center justify-between">
-                                            <div className="flex items-center">
-                                                <div className="flex-shrink-0 h-8 w-8 rounded-full bg-gradient-to-r from-purple-400 to-indigo-400 flex items-center justify-center text-white font-medium">
-                                                    {createdClashDetails.opponent.charAt(0).toUpperCase()}
-                                                </div>
-                                                <div className="ml-2">
-                                                    <p className="text-sm font-medium text-gray-700">
-                                                        VS {createdClashDetails.opponent}
-                                                    </p>
-                                                </div>
-                                            </div>
-                                            <span className="text-xs text-gray-500">{createdClashDetails.date}</span>
-                                        </div>
-                                    </div>
-                                    
-                                    <div className="text-center text-sm text-gray-500">
-                                        Vous pouvez maintenant accéder à votre clash pour commencer à y participer.
-                                    </div>
-                                </motion.div>
-                            ) : (
-                                <form onSubmit={onSubmit} className="space-y-6">
+<form onSubmit={onSubmit} className="space-y-6">
                                     <div className="space-y-2">
                                         <label htmlFor="title" className="block text-sm font-medium text-gray-700">
                                             Titre du clash
@@ -421,7 +349,6 @@ const ModalClash = ({ isOpen, onClose, onConfirm }) => {
                                         )}
                                     </div>
                                 </form>
-                            )}
                         </div>
 
                         {/* Footer with actions */}

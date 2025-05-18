@@ -68,14 +68,17 @@ const clashController = {
     },
     addFile: async (req: Request, res: Response) => {
         try {
-            const { id, content } = req.body;
+            const { id, content, id_user } = req.body;
+            const id_page = await clashModel.getFileByUser(parseInt(id), parseInt(id_user))
             const fileName = `page-${Date.now()}.html`;
             const filePath = path.join(__dirname, '../../public', fileName);
             const url = `/${fileName}`; // URL accessible publiquement
 
             // Écrire le fichier dans le dossier public
             await fs.writeFile(filePath, content, 'utf8');
-            let result = await clashModel.updateFile(id, url)
+            console.log(id_page);
+            
+            let result = await clashModel.updateFile(id_page, url)
             res.status(200).send(result)
         } catch (err: any) {
             console.log(err)
