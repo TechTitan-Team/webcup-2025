@@ -12,12 +12,12 @@ const navItems = [
     href: "/",
   },
   {
-    title: "Modèles",
-    href: "/app",
+    title: "Liste des templates",
+    href: "/list-template",
   },
   {
-    title: "À propos",
-    href: "/about",
+    title: "Liste des clash",
+    href: "/clash",
   },
   {
     title: "Créer",

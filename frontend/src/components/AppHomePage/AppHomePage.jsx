@@ -10,7 +10,7 @@ import TemplateGrid from "../TemplateGrid/TemplateGrid";
 import Layout from "../Layout/Layout";
 import Header from "../Layout/Header/Header";
 
-export default function AppHomePage() {
+export default function ListeTemplate() {
   const { titleScale, titleOpacity, titleY, searchBarPosition } =
     useScrollAnimation();
   const {

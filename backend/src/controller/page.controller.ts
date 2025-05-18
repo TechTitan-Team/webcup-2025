@@ -32,19 +32,6 @@ const pageController = {
             const filePath = path.join(__dirname, '../../public', fileName);
             const url = `/${fileName}`; // URL accessible publiquement
     
-    //         // Créer le contenu HTML complet si ce n'est pas déjà fait
-    //         const htmlContent = `
-    // <!DOCTYPE html>
-    // <html lang="en">
-    // <head>
-    //     <meta charset="UTF-8">
-    //     <title>Page</title>
-    // </head>
-    // <body>
-    //     ${content}
-    // </body>
-    // </html>`;
-    
             // Écrire le fichier dans le dossier public
             await fs.writeFile(filePath, content, 'utf8');
     

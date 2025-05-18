@@ -4,18 +4,22 @@ import About from "../components/About/About";
 import AuthPage from "../components/Auth/AuthPage";
 import PageCore from "../components/PageCore/PageCore";
 import ContentGenerator from "../components/ContentGenerator/ContentGenerator";
+import ClashList from "../components/Clash/Clash";
 import ListUser from "../components/Dashboard/components/userList/UserList";
 import HomeDashboard from "../components/Dashboard";
 import Dashboards from "../components/Dashboard/components/dashboard/Dashboard";
 import UserProfile from "../components/Dashboard/components/userList/ProfilUser/ProfilUser";
-import AppHomePage from "../components/AppHomePage/AppHomePage";
+import ListeTemplate from "../components/AppHomePage/AppHomePage";
 import EditableLetter from "../components/TemplateContent/EditableLetter";
+import BridgeGame from "../components/BridgeGame/BridgeGame";
+import MazeGame from "../components/MazeGame/MazeGame";
 
 const Router = () => {
   return (
     <BrowserRouter>
       <Routes>
         <Route path="/" element={<Home />} />
+        <Route path="/clash" element={<ClashList />} />
         <Route path="/about" element={<About />} />
         <Route path="/app/create-ai" element={<ContentGenerator />} />
         <Route path="/signIn" element={<AuthPage />} />
@@ -26,9 +30,9 @@ const Router = () => {
           <Route path="list/user-profile/:id" element={<UserProfile />} />
         </Route>
         <Route
-          path="/app"
+          path="/list-template"
           element={
-              <AppHomePage />
+              <ListeTemplate />
           }
         />
         <Route
@@ -37,6 +41,8 @@ const Router = () => {
               <EditableLetter />
           }
         />
+         <Route path='/bridge-game' element={<BridgeGame />} />
+         <Route path='/maze-game' element={<MazeGame />} />
       </Routes>
     </BrowserRouter>
   );

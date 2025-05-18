@@ -9,11 +9,11 @@ const pageModel = {
                     orderBy: {
                         id: "desc"
                     }
-                })        
+                })
                 resolve(result)
             } catch (error) {
-                reject(new Error("Data error: "+ error))
-            } 
+                reject(new Error("Data error: " + error))
+            }
         })
     },
     getOne: (id: number) => {
@@ -26,45 +26,40 @@ const pageModel = {
                 })
                 resolve(result)
             } catch (error) {
-                reject(new Error("Data error: "+ error))
-            } 
+                reject(new Error("Data error: " + error))
+            }
         })
     },
-    create: (
+    create: async (
         url: string,
-		type: string,
-		id_user: number,
-		
+        type: string,
+        id_user: number,
+
         // file
-        
-    ) =>{
-        return new Promise(async (resolve, reject) => {
-            try {
-                let result = await prisma.page.create({
-                    data: {
-                        url,
-						type,
-						id_user,
-						
-                        // file
-                        
-                    }
-                })
-                resolve(result)
-            } catch (error) {
-                reject(new Error("Data error: "+ error))
-            } 
+
+    ) => {
+        let result = await prisma.page.create({
+            data: {
+                url,
+                type,
+                id_user,
+
+                // file
+
+            }
         })
+        return (result)
+
     },
     update: (
         id: number,
         url: string,
-		type: string,
-		id_user: number,
-		
+        type: string,
+        id_user: number,
+
         // file
-        
-    ) =>{
+
+    ) => {
         return new Promise(async (resolve, reject) => {
             try {
                 let result = await prisma.page.update({
@@ -73,17 +68,17 @@ const pageModel = {
                     },
                     data: {
                         url,
-						type,
-						id_user,
-						
+                        type,
+                        id_user,
+
                         // file
-                        
+
                     }
                 })
                 resolve(result)
             } catch (error) {
-                reject(new Error("Data error: "+ error))
-            } 
+                reject(new Error("Data error: " + error))
+            }
         })
     },
     delete: (id: number) => {
@@ -96,8 +91,8 @@ const pageModel = {
                 })
                 resolve(result)
             } catch (error) {
-                reject(new Error("Data error: "+ error))
-            } 
+                reject(new Error("Data error: " + error))
+            }
         })
     },
 }
