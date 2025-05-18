@@ -1,4 +1,5 @@
 import React from 'react';
+import ShareModal from '../../common/ModalShare/ModalShare';
 import { IconBack, IconWarning, IconShare, IconFullScreen } from '../Icons/LetterIcons';
 
 export default function LetterHeader({
@@ -6,7 +7,10 @@ export default function LetterHeader({
   handleNavigateBack, 
   sharedUsers, 
   handleShare, 
-  handleFullScreen
+  handleFullScreen,
+  isShareModalOpen,
+  setIsShareModalOpen,
+  shareUrl
 }) {
   return (
     <div className="mb-6 flex items-center justify-between">
@@ -19,7 +23,6 @@ export default function LetterHeader({
           Retour aux modèles
         </button>
 
-        {/* Avatar Group */}
         <div className="flex -space-x-2 ml-4">
           {sharedUsers.map((user) => (
             <div
@@ -62,6 +65,12 @@ export default function LetterHeader({
           <span className="ml-2">Plein écran</span>
         </button>
       </div>
+
+      <ShareModal
+        isOpen={isShareModalOpen}
+        onClose={() => setIsShareModalOpen(false)}
+        shareUrl={shareUrl}
+      />
     </div>
   );
-} 
+}

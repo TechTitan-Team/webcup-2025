@@ -10,6 +10,7 @@ const sendData = ()=>{
                 content: html
             })
             console.log(response.data)
+            return response.data.url
         }catch(err){
             console.log(err);
         }

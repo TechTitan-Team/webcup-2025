@@ -7,6 +7,7 @@ import LetterSidebar from "../TemplateContent/LetterSidebar";
 import LetterHeader from "../TemplateContent/LetterHeader";
 import LetterPreview from "../TemplateContent/LetterPreview";
 import Header from "../Layout/Header/Header";
+import { BaseUrl } from "../../hooks/useHttps";
 
 export default function ContentGenerator() {
   const navigate = useNavigate();
@@ -27,8 +28,14 @@ export default function ContentGenerator() {
     handleModifyContent,
   } = useAIGeneration();
 
-  const sendTheHtml = () => {
-    sendHtml("type", generatedHtml);
+  const [url, setUrl] = useState("")
+  const [isOpen, setIsOpen] = useState(false)
+
+  const sendTheHtml = async() => {
+    await sendHtml("type", generatedHtml).then((res)=>{
+      setUrl(res);
+      setIsOpen(true)
+    });
   };
 
   const handleNavigateBack = () => {
@@ -230,8 +237,11 @@ export default function ContentGenerator() {
               hasChanges={true}
               handleNavigateBack={handleNavigateBack}
               sharedUsers={[]}
-              handleShare={() => {}}
+              handleShare={sendTheHtml}
               handleFullScreen={handleFullScreen}
+              shareUrl={BaseUrl+url}
+              isShareModalOpen={isOpen}
+              setIsShareModalOpen={setIsOpen}
             />
 
             <LetterPreview getHTML={() => generatedHtml} />
@@ -379,7 +389,9 @@ export default function ContentGenerator() {
   return (
     <div className="flex h-screen bg-gradient-to-br from-indigo-200 via-pink to-pink-200">
       <div className="fixed w-full top-0 z-10">
+      {!isModif && 
         <Header />
+      }
       </div>
       {renderContent()}
     </div>
