@@ -51,3 +51,19 @@
 
     }
 }
+.link{
+    position: relative;
+    display: flex;
+    align-items: center;
+    font-size: 2rem;
+    font-weight: bold;
+    
+    .indicator{
+        width: 10px;
+        height: 10px;
+        background-color: #033d68;
+        border-radius: 50%;
+        position: absolute;
+        left: -30px;
+    }
+}

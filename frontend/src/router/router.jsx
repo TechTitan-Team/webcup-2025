@@ -17,13 +17,10 @@ import FameDetail from "../components/FameDetail/FameDetail";
 import EditableClash from "../components/Clash/editedClash";
 import DualIframeComponent from "../components/Clash/ViewClash";
 
-// Protected Route component
 const ProtectedRoute = ({ children }) => {
-  // Replace this with your actual authentication logic
   const isAuthenticated = localStorage.getItem("token") !== null;
 
   if (!isAuthenticated) {
-    // Redirect to login if not authenticated
     return <Navigate to="/signIn" replace />;
   }
 

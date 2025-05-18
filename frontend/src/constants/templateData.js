@@ -1,7 +1,7 @@
 export const categories = [
     { id: 'all', name: 'Tout' },
     { id: 'professional', name: 'Professionnel' },
-    { id: 'creative', name: 'Créatif' },
+    { id: 'creative', name: 'Projet' },
     { id: 'personal', name: 'Personnel' },
     { id: 'digital', name: 'Numérique' },
 ];

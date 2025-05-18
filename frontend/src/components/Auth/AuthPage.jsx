@@ -2,11 +2,6 @@ import React, { useState, useEffect } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import LoginForm from './LoginForm';
 import SignupForm from './SignUpForm';
-import logo from "../../assets/images/TechTitan.png";
-import loginImage from "../../assets/images/peaky.jpg";
-import signupImage from "../../assets/images/peaky-2.jpg";
-import leftBgImage from "../../assets/images/left-bg.jpg";
-import rightBgImage from "../../assets/images/right-bg.jpg";
 
 function AuthPage() {
   const [isLogin, setIsLogin] = useState(true);

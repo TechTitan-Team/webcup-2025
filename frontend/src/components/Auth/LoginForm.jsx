@@ -40,7 +40,7 @@ const LoginForm = () => {
       setToken(result.data);
       setIsRecognizing(false);
       setForm({ ...form, loading: false, error: null });
-      nav("/");
+      nav("/list-template");
     }
   };
   const handleSubmit = async (e) => {
@@ -54,7 +54,7 @@ const LoginForm = () => {
           password: form.password
         }).then((res) => {
           setToken(res.data);
-          nav("/");
+          nav("/list-template");
           setForm({ ...form, loading: false });
         });
       } catch (err) {

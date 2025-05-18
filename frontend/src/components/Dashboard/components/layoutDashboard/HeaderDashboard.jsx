@@ -2,8 +2,6 @@ import React from 'react';
 import { Link, useLocation } from 'react-router-dom';
 import NotificationIcon from '../../../../assets/icons/NotificationIcon';
 import UserIcon from '../../../../assets/icons/UserIcon';
-// Import du logo avec le chemin correct
-import Logo from '../../../../assets/images/theEndPage.webp';
 
 const Header = () => {
     const location = useLocation();

@@ -4,7 +4,8 @@ import { motion } from "framer-motion";
 import { menuSlide } from "./Anim/anim";
 import NavLink from "./NavLink/NavLink";
 import Curve from "../Curve/Curve";
-import { useLocation } from "react-router-dom";
+import { useLocation, useNavigate } from "react-router-dom";
+import useToken from "../../../../hooks/useToken";
 
 const navItems = [
   {
@@ -35,17 +36,15 @@ const navItems = [
     title: "Maze Game",
     href: "/maze-game",
   },
-  {
-    title: "Se connecter",
-    href: "/signIn",
-  },
+
 ];
 
 export default function Nav() {
   const location = useLocation();
   const pathname = location.pathname;
+  const { clearToken } = useToken();
   const [selectedIndicator, setSelectedIndicator] = useState(pathname);
-
+const nav = useNavigate();
   return (
     <motion.div
       variants={menuSlide}
@@ -74,11 +73,14 @@ export default function Nav() {
               ></NavLink>
             );
           })}
+          <a onClick={() => {
+            removeToken();
+            nav("/signIn");
+          }} className={styles.link}>Déconnexion</a>
         </div>
         <div className={styles.footer}>
-          <a>Instagram</a>
-          <a>Twitter</a>
-          <a>LinkedIn</a>
+          <a href="/bridge-game" target="_blank">Bridge Game</a>
+          <a href="/maze-game" target="_blank">Maze Game</a>
         </div>
       </div>
       <Curve />
