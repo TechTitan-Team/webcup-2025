@@ -8,16 +8,16 @@ import { useLocation } from "react-router-dom";
 
 const navItems = [
   {
-    title: "Home",
+    title: "Accueil",
     href: "/",
   },
   {
-    title: "Template",
-    href: "/template",
+    title: "Liste des templates",
+    href: "/list-template",
   },
   {
-    title: "About",
-    href: "/about",
+    title: "Liste des clash",
+    href: "/clash",
   },
   {
     title: "Work",

@@ -8,14 +8,69 @@ const clashModel = {
                 let result = await prisma.clash.findMany({
                     orderBy: {
                         id: "desc"
+                    },
+                    where: {
+                        OR: [
+                            {
+                                page1: {
+                                    url: {
+                                        not: ""
+                                    }
+                                }
+                            },
+                            {
+                                page2: {
+                                    url: {
+                                        not: ""
+                                    }
+                                }
+                            }
+                        ]
                     }
                 })        
                 resolve(result)
             } catch (error) {
-                reject(new Error("Data error: "+ error))
+                reject(new Error("Data error: " + error))
             } 
         })
     },
+    getByUser: (id: number) => {
+        return new Promise(async (resolve, reject) => {
+            try {
+                const result = await prisma.clash.findMany({
+                    where: {
+                        OR: [
+                            {
+                                id_user1: id,
+                                page1: {
+                                    url: ""
+                                }
+                            },
+                            {
+                                id_user2: id,
+                                page2: {
+                                    url: ""
+                                }
+                            }
+                        ]
+                    },
+                    orderBy: {
+                        id: "desc"
+                    },
+                    include: {
+                        page1: true,
+                        page2: true,
+                        user1: true,
+                        user2: true
+                    }
+                });
+    
+                resolve(result);
+            } catch (error) {
+                reject(new Error("Data error: " + error));
+            }
+        });
+    },    
     getOne: (id: number) => {
         return new Promise(async (resolve, reject) => {
             try {

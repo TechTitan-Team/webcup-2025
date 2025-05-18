@@ -29,13 +29,13 @@ app.get('/', (req: Request, res: Response) => {
 });
 
 app.get('/api', (req: Request, res: Response) => {
-  res.send('Hello from API boilerplate');
+  res.send('Hello from Backend boilerplate');
 });
-
 // All router here
 app.use('/api/user', userRouter)
+app.use('/api/clash', clashRouter);
+
 app.use('/api/page', pageRouter)
-app.use('/api/clash', clashRouter)
 
 const localImages = process.env.ENV && process.env.ENV == "development" ? './public' : '../public'
 app.use('/public', express.static(path.join(__dirname, localImages)));

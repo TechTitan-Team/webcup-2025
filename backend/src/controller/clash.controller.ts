@@ -13,6 +13,18 @@ const clashController = {
             res.status(500).send(error)
         }
     },
+    getByUser: async (req: Request, res: Response) => {
+        try {
+            let {id} = req.params
+            console.log(id);
+            
+            let result = await clashModel.getByUser(parseInt(id));
+            res.status(200).send(result)
+        } catch (error: any) {
+            console.log(error)
+            res.status(500).send(error)
+        }
+    },
     getOne: async (req: Request, res: Response) => {
         try {
             let { id } = req.params
@@ -28,24 +40,26 @@ const clashController = {
             title,
             id_user1,
             id_user2,
-            nbr_like,
         } = req.body
         // file
-
+        console.log(title);
+        
         try {
 
             let id_page1 = await pageModel.create("", "clash", parseInt(id_user1))
             let id_page2 = await pageModel.create("", "clash", parseInt(id_user2))
-            let result = await clashModel.create(
+            await clashModel.create(
                 title,
                 id_page1.id,
                 id_page2.id,
-                id_user1,
-                id_user2,
-                nbr_like,
+                parseInt(id_user1),
+                parseInt(id_user2),
+                0,
                 // file
             )
-            res.status(200).send(result)
+            res.status(200).send({
+                id: id_page1
+            })
         }
         catch (error: any) {
             console.log(error)
