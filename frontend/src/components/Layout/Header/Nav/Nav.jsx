@@ -74,7 +74,7 @@ const nav = useNavigate();
             );
           })}
           <a onClick={() => {
-            removeToken();
+            clearToken();
             nav("/signIn");
           }} className={styles.link}>Déconnexion</a>
         </div>
