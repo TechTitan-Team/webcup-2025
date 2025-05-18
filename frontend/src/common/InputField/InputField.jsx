@@ -17,17 +17,17 @@ const InputField = ({
 }) => {
   return (
     <div className="mb-4">
-      <label className="block text-[#00C4A7] text-sm mb-1">{label}</label>
+      <label className="block text-gray-600 text-xs mb-1 font-medium">{label}</label>
       <div className="relative">
         {icon && (
-          <div className="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none">
+          <div className="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none text-gray-400">
             {icon}
           </div>
         )}
         <input
           type={showToggle ? (showPassword ? "text" : "password") : type}
           name={name}
-          className={`bg-white/5 border ${error ? 'border-red-500' : 'border-gray-600'} text-gray-700 ${icon ? 'pl-10' : 'pl-4'} py-2 px-4 w-full rounded-md focus:outline-none focus:border-[#00C4A7]`}
+          className={`bg-white border ${error ? 'border-red-400' : 'border-gray-200'} text-gray-700 ${icon ? 'pl-10' : 'pl-3'} py-2 px-3 w-full rounded-md focus:outline-none focus:border-gray-400 text-sm`}
           value={value}
           onChange={onChange}
           placeholder={placeholder}
@@ -35,7 +35,7 @@ const InputField = ({
         />
         {showToggle && (
           <div
-            className="absolute inset-y-0 right-0 pr-3 flex items-center cursor-pointer text-[#00C4A7] hover:text-teal-300"
+            className="absolute inset-y-0 right-0 pr-3 flex items-center cursor-pointer text-gray-500 hover:text-gray-700"
             onClick={togglePassword}
           >
             {showPassword ? iconShow : iconNotShow}

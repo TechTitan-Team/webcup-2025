@@ -3,6 +3,7 @@ import Marquee from "react-fast-marquee";
 import { HiFolderDownload } from "react-icons/hi";
 import CustomContainer from "../../../common/CustomContainer/CustomContainer";
 import CustomButton from "../../../common/CustomButton/CustomButton";
+import { Link } from "react-router-dom";
 
 import backgroundImage from "../../../assets/images/pexels-by.png"; 
 import backgroundImageTwo from "../../../assets/images/pexels-by-2.png"; 
@@ -13,20 +14,20 @@ const Hero = () => {
   useEffect(() => {
     const interval = setInterval(() => {
       setCurrentImage((prev) => (prev === 0 ? 1 : 0));
-    }, 3000); // Change d'image toutes les 3 secondes
+    }, 3000);
 
     return () => clearInterval(interval);
   }, []);
 
   return (
     <CustomContainer className={"banner"}>
-      <div className="banner-title mt-5">
+      <div className="banner-title mt-8">
         <Marquee 
           speed={80} 
           gradient={false} 
           style={{ overflow: "hidden", zIndex: 'auto' }}
         >
-          <h1>Crée ta page de départ -</h1>
+          <h1>Créez votre page d'adieu -</h1>
         </Marquee>
         <Marquee
           speed={80}
@@ -34,18 +35,19 @@ const Hero = () => {
           gradient={false}
           style={{ overflow: "hidden", zIndex: 'auto'}}
         >
-          <h1>dramatique - classe - gênante ou touchante -</h1>
+          <h1>dramatique - ironique - cringe - classe - touchante -</h1>
         </Marquee>
       </div>
 
-      <div className="content flex mt-15">
+      <div className="content flex mt-16">
         <div className="w-1/5 flex items-center">
           <div>
-            <p>
-              AS A DIGITAL DESIGNER, I FOCUS ON PRODUCING TOP-NOTCH AND IMPACTFUL
-              DIGITAL EXPERIENCES.
+            <p className="text-gray-600 text-sm">
+              EXPRIMEZ-VOUS AVANT DE CLAQUER LA PORTE.
             </p>
-            <p>DAVID'S INTERACTION DESIGN EXPERTISE DELIVERED.</p>
+            <p className="text-gray-600 text-sm mt-2">
+              UNE PAGE UNIQUE. AVEC STYLE.
+            </p>
           </div>
         </div>
         <div className="w-3/5 text-center">
@@ -67,27 +69,16 @@ const Hero = () => {
           />
         </div>
         <div className="w-1/5 flex flex-col justify-start items-start">
-          <p>
-            AS A DIGITAL DESIGNER, I FOCUS ON PRODUCING TOP-NOTCH AND IMPACTFUL
+          <p className="text-gray-600 text-sm">
+            PARCE QUE SI C'EST LA FIN, AUTANT QU'ELLE SOIT INOUBLIABLE.
           </p>
-          <div>
+          <Link to="/create-page">
             <CustomButton
               className="mt-5"
               title={"Créer ma page"}
-              icon={<HiFolderDownload className="w-6 h-6" />}
+              icon={<HiFolderDownload className="w-5 h-5" />}
             />
-          </div>{/*
-          <div className="flex gap-2">
-            <CustomBadge
-              title={"Digital design"}
-              className={'mt-4'}
-            />
-            <CustomBadge
-              title={"2025"}
-              className={'mt-4'}
-              theme="dark"
-            />
-          </div> */}
+          </Link>
         </div>
       </div>
     </CustomContainer>

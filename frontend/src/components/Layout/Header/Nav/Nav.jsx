@@ -8,32 +8,24 @@ import { useLocation } from "react-router-dom";
 
 const navItems = [
   {
-    title: "Home",
+    title: "Accueil",
     href: "/",
   },
   {
-    title: "Template",
-    href: "/template",
+    title: "Modèles",
+    href: "/app",
   },
   {
-    title: "About",
+    title: "À propos",
     href: "/about",
   },
   {
-    title: "Work",
-    href: "/work",
+    title: "Créer",
+    href: "/create-page",
   },
   {
-    title: "Projects",
-    href: "/projects",
-  },
-  {
-    title: "Awards",
-    href: "/awards",
-  },
-  {
-    title: "Contact",
-    href: "/contact",
+    title: "Se connecter",
+    href: "/signIn",
   },
 ];
 
@@ -72,9 +64,8 @@ export default function Nav() {
           })}
         </div>
         <div className={styles.footer}>
-          <a>Awwwards</a>
           <a>Instagram</a>
-          <a>Dribble</a>
+          <a>Twitter</a>
           <a>LinkedIn</a>
         </div>
       </div>
