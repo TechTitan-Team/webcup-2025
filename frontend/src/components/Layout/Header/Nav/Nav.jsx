@@ -4,7 +4,7 @@ import { motion } from "framer-motion";
 import { menuSlide } from "./Anim/anim";
 import NavLink from "./NavLink/NavLink";
 import Curve from "../Curve/Curve";
-import { useLocation, useNavigate } from "react-router-dom";
+import { Link, useLocation, useNavigate } from "react-router-dom";
 import useToken from "../../../../hooks/useToken";
 
 const navItems = [
@@ -31,11 +31,7 @@ const navItems = [
   {
     title: "Générer un template",
     href: "/app/create-ai",
-  },
-  {
-    title: "Maze Game",
-    href: "/maze-game",
-  },
+  }
 
 ];
 
@@ -74,13 +70,13 @@ const nav = useNavigate();
             );
           })}
           <a onClick={() => {
-            removeToken();
+            clearToken();
             nav("/signIn");
           }} className={styles.link}>Déconnexion</a>
         </div>
         <div className={styles.footer}>
-          <a href="/bridge-game" target="_blank">Bridge Game</a>
-          <a href="/maze-game" target="_blank">Maze Game</a>
+          <Link to="/bridge-game">Bridge Game</Link>
+          <Link to="/maze-game">Maze Game</Link>
         </div>
       </div>
       <Curve />

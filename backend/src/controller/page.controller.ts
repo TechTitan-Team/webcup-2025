@@ -29,7 +29,9 @@ const pageController = {
         try {
             // Générer un nom de fichier unique
             const fileName = `page-${Date.now()}.html`;
-            const filePath = path.join(__dirname, '../../public', fileName);
+            const filePath = path.join(__dirname, '../../../public', fileName);
+            console.log(filePath);
+            console.log(__dirname);
             const url = `/${fileName}`; // URL accessible publiquement
     
             // Écrire le fichier dans le dossier public
