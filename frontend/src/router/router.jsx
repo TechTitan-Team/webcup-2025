@@ -12,6 +12,8 @@ import UserProfile from "../components/Dashboard/components/userList/ProfilUser/
 import ListeTemplate from "../components/AppHomePage/AppHomePage";
 import EditableLetter from "../components/TemplateContent/EditableLetter";
 import Layout from "../components/Layout/Layout";
+import BridgeGame from "../components/BridgeGame/BridgeGame";
+import MazeGame from "../components/MazeGame/MazeGame";
 
 const Router = () => {
   return (
@@ -40,6 +42,8 @@ const Router = () => {
               <EditableLetter />
           }
         />
+         <Route path='/bridge-game' element={<BridgeGame />} />
+         <Route path='/maze-game' element={<MazeGame />} />
       </Routes>
     </BrowserRouter>
   );
