@@ -3,14 +3,14 @@ import React from 'react';
 const RecentSales = () => {
     const sales = [
         {
-            date: '01 Feb 2023',
+            date: '01 Fév 2023',
             name: 'Robert',
-            amount: '$50.82',
+            amount: '50,82 €',
         },
         {
-            date: '03 Feb 2023',
+            date: '03 Fév 2023',
             name: 'Smith',
-            amount: '$76.53',
+            amount: '76,53 €',
         },
     ];
 
@@ -18,17 +18,17 @@ const RecentSales = () => {
         <div>
             <div className='flex justify-between items-center mb-6'>
                 <h2 className='text-xl font-bold text-gray-800'>
-                    Recent Sales
+                    Ventes Récentes
                 </h2>
-                <button className='text-sm text-blue-500'>View Details</button>
+                <button className='text-sm text-blue-500'>Voir Détails</button>
             </div>
 
             <table className='w-full'>
                 <thead>
                     <tr className='text-left text-gray-600'>
                         <th className='pb-3 font-medium'>Date</th>
-                        <th className='pb-3 font-medium'>Name</th>
-                        <th className='pb-3 font-medium'>Amount</th>
+                        <th className='pb-3 font-medium'>Nom</th>
+                        <th className='pb-3 font-medium'>Montant</th>
                     </tr>
                 </thead>
                 <tbody>

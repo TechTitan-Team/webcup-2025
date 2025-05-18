@@ -21,7 +21,7 @@ const Header = () => {
                     <img
                         src={Logo}
                         alt='TheEndPage Logo'
-                        className="h-14 w-14 rounded-full object-cover border-2 border-gray-300 shadow-sm" 
+                        className='h-14 w-14 rounded-full object-cover border-2 border-gray-300 shadow-sm'
                     />
                 </Link>
             </div>

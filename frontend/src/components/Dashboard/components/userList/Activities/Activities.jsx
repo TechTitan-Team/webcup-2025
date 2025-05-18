@@ -3,7 +3,7 @@ import React from 'react';
 const Activities = ({ activities }) => {
     return (
         <div className='bg-white rounded-3xl p-6 shadow-sm mb-6'>
-            <h2 className='text-gray-700 font-medium mb-4'>Activities</h2>
+            <h2 className='text-gray-700 font-medium mb-4'>Activités</h2>
             <div className='space-y-4'>
                 {activities.map((activity, index) => (
                     <div key={index} className='flex items-center space-x-4'>

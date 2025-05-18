@@ -6,14 +6,14 @@ const OrderTable = () => {
             id: '#00052',
             product: 'iPhone 14',
             date: '01 Jan 2023',
-            status: 'Pending',
+            status: 'En attente',
             tracking: 'SR002IP',
         },
         {
             id: '#05134',
             product: 'Macbook Air',
             date: '03 Jan 2023',
-            status: 'Delivered',
+            status: 'Livré',
             tracking: 'PQ1132G',
         },
     ];
@@ -21,9 +21,9 @@ const OrderTable = () => {
     return (
         <div>
             <div className='flex justify-between items-center mb-6'>
-                <h2 className='text-xl font-bold text-gray-800'>Last Order</h2>
+                <h2 className='text-xl font-bold text-gray-800'>Dernières Commandes</h2>
                 <button className='flex items-center space-x-1 border border-gray-300 rounded-lg px-3 py-1'>
-                    <span className='text-sm'>Weekly</span>
+                    <span className='text-sm'>Hebdomadaire</span>
                     <svg
                         className='w-4 h-4'
                         fill='none'
@@ -43,11 +43,11 @@ const OrderTable = () => {
             <table className='w-full'>
                 <thead>
                     <tr className='text-left text-gray-600'>
-                        <th className='pb-3 font-medium'>Customer ID</th>
-                        <th className='pb-3 font-medium'>Product</th>
+                        <th className='pb-3 font-medium'>ID Client</th>
+                        <th className='pb-3 font-medium'>Produit</th>
                         <th className='pb-3 font-medium'>Date</th>
-                        <th className='pb-3 font-medium'>Status</th>
-                        <th className='pb-3 font-medium'>Tracking</th>
+                        <th className='pb-3 font-medium'>Statut</th>
+                        <th className='pb-3 font-medium'>Suivi</th>
                     </tr>
                 </thead>
                 <tbody>
@@ -58,7 +58,7 @@ const OrderTable = () => {
                             <td className='py-4 text-gray-500'>{order.date}</td>
                             <td
                                 className={`py-4 ${
-                                    order.status === 'Pending'
+                                    order.status === 'En attente'
                                         ? 'text-yellow-500'
                                         : 'text-green-500'
                                 }`}
