@@ -1,4 +1,3 @@
-import BackgroundEffects from "../../common/BackgroundEffects/BackgroundEffects";
 import CategoryFilter from "../../common/CategoryFilter/CategoryFilter";
 import ScrollIndicator from "../../common/ScrollIndicator/ScrollIndicator";
 import SearchBar from "../../common/SearchBar/SearchBar";
@@ -14,8 +13,6 @@ import Header from "../Layout/Header/Header";
 export default function ListeTemplate() {
   const { titleScale, titleOpacity, titleY, searchBarPosition } =
     useScrollAnimation();
-  const { activeCategory, setActiveCategory, filteredTemplateIds } =
-    useTemplateFilter();
   const {
     searchQuery,
     searchIsFocused,
@@ -23,11 +20,13 @@ export default function ListeTemplate() {
     handleSearchBlur,
     handleSearchChange,
   } = useSearchBar();
+  const { activeCategory, setActiveCategory, filteredTemplateIds } =
+    useTemplateFilter(searchQuery);
   const { showScrollIndicator } = useScrollIndicator();
 
   return (
     <Layout>
-      <div className="min-h-screen bg-gradient-to-br from-pink via-indigo-100 to-pink-200 overflow-x-hidden">
+      <div className="min-h-screen bg-gradient-to-br from-indigo-200 via-pink to-pink-200 overflow-x-hidden">
         <div className="relative z-10">
           <div className="fixed w-full top-0 z-10">
             <Header />
@@ -37,12 +36,12 @@ export default function ListeTemplate() {
             className="text-center mt-30 px-4 py-8"
           >
             <motion.h1
-              className="text-5xl md:text-6xl text-transparent bg-clip-text bg-gradient-to-r from-purple-600 via-indigo-600 to-blue-600 mb-3"
+              className="text-5xl md:text-5xl text-transparent bg-clip-text bg-gradient-to-r from-purple-600 via-indigo-600 to-blue-600 mb-3"
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ delay: 0.3 }}
             >
-              Qu'allez-vous créer aujourd'hui ?
+              Créez votre page d'adieu
             </motion.h1>
             <motion.p
               className="text-gray-600 text-lg max-w-2xl mx-auto"
@@ -50,8 +49,7 @@ export default function ListeTemplate() {
               animate={{ opacity: 1 }}
               transition={{ delay: 0.5 }}
             >
-              Créez votre page d'adieu personnalisée. Exprimez-vous avant de
-              claquer la porte.
+              Exprimez-vous avec style avant de claquer la porte. Une page unique pour un message final.
             </motion.p>
           </motion.div>
 
@@ -79,7 +77,7 @@ export default function ListeTemplate() {
                 animate={{ opacity: 1, x: 0 }}
                 transition={{ delay: 0.6 }}
               >
-                Website templates
+                Modèles disponibles
                 <svg
                   className="w-5 h-5 ml-2 text-gray-600"
                   fill="none"

@@ -24,16 +24,20 @@ const navItems = [
     href: "/hall-of-fame",
   },
   {
-    title: "Projects",
-    href: "/projects",
+    title: "Créer un template personnalisé",
+    href: "/create-page",
   },
   {
-    title: "Awards",
-    href: "/awards",
+    title: "Générer un template",
+    href: "/app/create-ai",
   },
   {
-    title: "Contact",
-    href: "/contact",
+    title: "Maze Game",
+    href: "/maze-game",
+  },
+  {
+    title: "Se connecter",
+    href: "/signIn",
   },
 ];
 
@@ -72,9 +76,8 @@ export default function Nav() {
           })}
         </div>
         <div className={styles.footer}>
-          <a>Awwwards</a>
           <a>Instagram</a>
-          <a>Dribble</a>
+          <a>Twitter</a>
           <a>LinkedIn</a>
         </div>
       </div>

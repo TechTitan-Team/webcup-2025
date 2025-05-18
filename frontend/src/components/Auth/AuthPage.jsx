@@ -25,22 +25,13 @@ function AuthPage() {
     return () => window.removeEventListener('resize', handleResize);
   }, []);
 
-  // Slowed down page transition
+  // Transition plus douce
   const pageTransition = {
     type: "spring",
-    stiffness: 30,
-    damping: 15,
-    mass: 1.2,
-    duration: 0.8
-  };
-
-  // Image specific transition
-  const imageTransition = {
-    type: "spring",
     stiffness: 25,
-    damping: 14,
-    mass: 1.5,
-    duration: 1.0
+    damping: 15,
+    mass: 1,
+    duration: 0.6
   };
 
   const toggleAuthMode = () => {
@@ -57,7 +48,7 @@ function AuthPage() {
         layout
         transition={pageTransition}
       >
-        {/* Left Section - becomes top section on mobile */}
+        {/* Section gauche - devient section supérieure sur mobile */}
         <motion.div 
           className={`w-full md:w-1/2 flex-shrink-0 flex flex-col items-center justify-between p-4 md:p-8 text-white relative ${
             !isLogin && !isMobile ? 'order-2' : 'order-1'
@@ -65,98 +56,71 @@ function AuthPage() {
           layout
           transition={pageTransition}
           style={{
-            backgroundImage: `url(${leftBgImage})`,
+            backgroundColor: '#f5f5f5',
             backgroundSize: 'cover',
             backgroundPosition: 'center',
             backgroundRepeat: 'no-repeat',
           }}
         >
           {/* Overlay */}
-          <div className="absolute inset-0 bg-[#391E10] opacity-70"></div>
+          <div className="absolute inset-0 bg-gray-800 opacity-90"></div>
           
-          {/* Content */}
+          {/* Contenu */}
           <motion.div 
-            className="z-10 w-full flex justify-center mb-2 md:mb-4"
+            className="z-10 w-full flex justify-center mb-2 md:mb-4 mt-6"
             initial={{ opacity: 0, y: -20 }}
             animate={{ opacity: 1, y: 0 }}
-            transition={{ delay: 0.3, duration: 0.8 }}
+            transition={{ delay: 0.3, duration: 0.6 }}
           >
-            <img src={logo} alt="Tech Titan Logo" className="w-16 h-16 md:w-20 md:h-20" />
+            <h2 className="text-xl font-medium">TheEnd.page</h2>
           </motion.div>
           
           <motion.div 
             className="z-10 text-center mb-2 md:mb-4"
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
-            transition={{ delay: 0.4, duration: 0.8 }}
+            transition={{ delay: 0.4, duration: 0.6 }}
           >
             <motion.h1 
-              className="text-xl md:text-3xl font-bold mb-1"
+              className="text-xl md:text-2xl font-normal mb-2"
               layout
               transition={pageTransition}
             >
-              {isLogin ? "Bonjour ! Bienvenue sur la plateforme" : "Bon retour parmi nous !"}
+              {isLogin ? "Bienvenue sur TheEnd.page" : "Créez votre compte"}
             </motion.h1>
             <motion.h2 
-              className="text-lg md:text-2xl font-bold mb-4"
+              className="text-base md:text-lg font-light mb-4"
               layout
               transition={pageTransition}
             >
-              {isLogin ? "de trading ArBitrage" : "Veuillez vous connecter pour continuer"}
+              {isLogin ? "La plateforme pour créer votre page d'adieu" : "Et commencez à créer votre page d'adieu"}
             </motion.h2>
             
             <motion.p 
-              className="text-gray-300 mb-4"
+              className="text-gray-300 mb-4 text-sm"
               layout
               transition={pageTransition}
             >
               {isLogin ? "Vous n'avez pas encore de compte ?" : "Vous avez déjà un compte ?"}
             </motion.p>
             
-            {/* Toggle Button */}
+            {/* Bouton de bascule */}
             <motion.button 
               onClick={toggleAuthMode}
-              className="bg-[#00C4A7] hover:bg-teal-600 text-white font-bold py-2 px-8 rounded-lg shadow-lg"
-              whileHover={{ scale: 1.05, transition: { duration: 0.3 } }}
-              whileTap={{ scale: 0.95 }}
+              className="bg-gray-700 hover:bg-gray-600 text-white font-normal py-2 px-6 rounded-md text-sm"
+              whileHover={{ scale: 1.03, transition: { duration: 0.2 } }}
+              whileTap={{ scale: 0.97 }}
             >
               {isLogin ? "S'inscrire" : "Se connecter"}
             </motion.button>
           </motion.div>
           
-          {/* Illustration with image switching based on isLogin state */}
-          <div className="z-10 w-full hidden sm:flex justify-center mb-4">
-            <AnimatePresence mode="wait">
-              {isLogin ? (
-                <motion.img 
-                  key="login-image"
-                  src={loginImage} 
-                  alt="Illustration de la plateforme de trading" 
-                  className="w-32 h-32 md:w-48 md:h-48 object-cover rounded-lg shadow-xl"
-                  style={{ maxHeight: isMobile ? '120px' : '200px' }}
-                  initial={{ opacity: 0, scale: 0.9, y: 20 }}
-                  animate={{ opacity: 1, scale: 1, y: 0 }}
-                  exit={{ opacity: 0, scale: 0.9, y: -20 }}
-                  transition={imageTransition}
-                />
-              ) : (
-                <motion.img 
-                  key="signup-image"
-                  src={signupImage} 
-                  alt="Illustration d'inscription" 
-                  className="w-32 h-32 md:w-48 md:h-48 object-cover rounded-lg shadow-xl"
-                  style={{ maxHeight: isMobile ? '120px' : '200px' }}
-                  initial={{ opacity: 0, scale: 0.9, y: 20 }}
-                  animate={{ opacity: 1, scale: 1, y: 0 }}
-                  exit={{ opacity: 0, scale: 0.9, y: -20 }}
-                  transition={imageTransition}
-                />
-              )}
-            </AnimatePresence>
+          <div className="z-10 w-full flex justify-center mb-6">
+            <p className="text-xs text-gray-400">Parce que si c'est la fin, autant qu'elle soit inoubliable.</p>
           </div>
         </motion.div>
 
-        {/* Right Section - Form */}
+        {/* Section droite - Formulaire */}
         <motion.div 
           className={`w-full md:w-1/2 flex-shrink-0 flex flex-col items-center justify-center p-4 md:p-8 relative ${
             !isLogin && !isMobile ? 'order-1' : 'order-2'
@@ -164,28 +128,25 @@ function AuthPage() {
           layout
           transition={pageTransition}
           style={{
-            backgroundImage: `url(${rightBgImage})`,
+            backgroundColor: '#ffffff',
             backgroundSize: 'cover',
             backgroundPosition: 'center',
             backgroundRepeat: 'no-repeat',
           }}
         >
-          {/* Overlay */}
-          <div className="absolute inset-0 bg-[#616e83] opacity-20"></div>
-          
-          {/* Logo in top right - only visible on larger screens */}
+          {/* Logo en haut à droite - visible uniquement sur les grands écrans */}
           <motion.div 
             className="absolute top-4 right-4 z-10 hidden md:block"
             layout
-            transition={imageTransition}
+            transition={pageTransition}
           >
-            <motion.img 
-              src={logo} 
-              alt="Tech Titan Logo" 
-              className="h-8"
+            <motion.p 
+              className="text-sm text-gray-500"
               layout
-              transition={imageTransition}
-            />
+              transition={pageTransition}
+            >
+              TheEnd.page
+            </motion.p>
           </motion.div>
           
           <AnimatePresence mode="wait">

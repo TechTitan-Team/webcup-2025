@@ -14,13 +14,13 @@ const CategoryFilter = ({ activeCategory, setActiveCategory }) => {
         <motion.button
           key={category.id}
           className={`flex items-center px-4 py-2 rounded-lg transition-colors whitespace-nowrap ${
-            activeCategory === category.name
+            activeCategory === category.id
               ? "bg-purple-100 text-purple-800"
               : "text-gray-600 hover:text-gray-800"
           }`}
           whileHover={{ scale: 1.05 }}
           whileTap={{ scale: 0.95 }}
-          onClick={() => setActiveCategory(category.name)}
+          onClick={() => setActiveCategory(category.id)}
         >
           <span>{category.name}</span>
         </motion.button>

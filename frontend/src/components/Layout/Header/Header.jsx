@@ -12,14 +12,12 @@ const Header = () => {
   };
 
   return (
-    <header className="header w-full flex justify-between items-center px-12 py-5">
+    <header className="header w-full flex justify-between items-center px-6 py-4 bg-transparent">
       <div className="w-1/3">
-        <p className="link">The EndPage</p>
+        <p className="link font-medium text-gray-800">TheEnd.page</p>
       </div>
       <div className="w-1/3 text-center">
-        {/* <p className="link">
-            Fullstack developer
-        </p> */}
+        {/* Centre vide pour design minimaliste */}
       </div>
       <div className="w-1/3 flex justify-end">
         <div onClick={toggleMenu} className={styles.button}>
@@ -31,7 +29,7 @@ const Header = () => {
         </div>
       </div>
 
-      {/* Overlay that appears when menu is open */}
+      {/* Overlay qui apparaît quand le menu est ouvert */}
       {isMenuOpen && (
         <div
           className={`blur-overlay ${isMenuOpen ? "visible" : ""}`}

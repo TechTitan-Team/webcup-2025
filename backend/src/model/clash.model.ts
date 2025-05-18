@@ -10,7 +10,7 @@ const clashModel = {
                         id: "desc"
                     },
                     where: {
-                        OR: [
+                        AND: [
                             {
                                 page1: {
                                     url: {
@@ -176,7 +176,27 @@ const clashModel = {
             }
         })
         return result;
-    }
+    },
+    getFileByUser: async (id: number, id_user: number) => {
+        const clash = await prisma.clash.findUnique({
+          where: { id },
+          include: {
+            page1: true,
+            page2: true,
+          },
+        });
+      
+        if (!clash) return 1;
+      
+        // Vérifie quel utilisateur correspond à id_user
+        if (clash.id_user1 === id_user) {
+          return clash.page1.id;
+        } else{
+          return clash.page2.id;
+        }
+      
+        // L'utilisateur ne fait pas partie du clash
+      }
 }
 
 export default clashModel;
