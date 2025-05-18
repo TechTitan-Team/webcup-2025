@@ -18,7 +18,7 @@ const TheEndHero = () => {
   return (
     <section
       id="accueil"
-      className="min-h-screen relative flex flex-col pt-30 items-center  overflow-hidden bg-white"
+      className="min-h-screen relative flex flex-col pt-30 items-center  overflow-hidden the-end-hero"
     >
       <div className="container max-w-7xl mx-auto px-6 relative z-10">
         <div className="flex flex-col items-center  text-center mb-12">
