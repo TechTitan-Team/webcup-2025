@@ -2,12 +2,14 @@ import { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import useGetOneTemplate from './useGetOneTemplate';
 import sendData from './sendHTML';
+import { BaseUrl } from './useHttps';
 
 export default function useLetterEditor(templateId) {
   const navigate = useNavigate();
   const { sendHtml } = sendData();
   const [sidebarOpen, setSidebarOpen] = useState(true);
-  
+  const [isShareModalOpen, setIsShareModalOpen] = useState(false);
+  const [shareUrl, setShareUrl] = useState("")
   const {
     template,
     loading,
@@ -39,41 +41,38 @@ export default function useLetterEditor(templateId) {
     }
   };
 
-  const handleShare = () => {
-    // Implémentation de la fonctionnalité de partage
-    alert("Fonctionnalité de partage à implémenter");
+  const handleShare = async() => {
+    await sendHtml("type", getHTML()).then((res)=>{
+      console.log(res);
+      setShareUrl(BaseUrl+res)
+    setIsShareModalOpen(true);
+
+    }).catch((err)=>{
+      console.log(err);
+    })
   };
 
   const handleFullScreen = () => {
-    // Obtenir le contenu HTML
     const htmlContent = getHTML();
-
-    // Ouvrir dans une nouvelle fenêtre
     const newWindow = window.open("", "_blank");
-
     if (newWindow) {
       newWindow.document.write(htmlContent);
       newWindow.document.close();
     } else {
-      alert(
-        "Votre navigateur a bloqué l'ouverture d'une nouvelle fenêtre. Veuillez autoriser les popups pour ce site."
-      );
+      alert("Votre navigateur a bloqué l'ouverture d'une nouvelle fenêtre.");
     }
   };
 
   const handleNavigateBack = () => {
     if (hasChanges) {
-      if (
-        window.confirm(
-          "Vous avez des modifications non enregistrées. Êtes-vous sûr de vouloir quitter ?"
-        )
-      ) {
+      if (window.confirm("Modifications non enregistrées. Quitter ?")) {
         navigate("/list-template");
       }
     } else {
       navigate("/list-template");
     }
   };
+
 
   return {
     sidebarOpen,
@@ -91,6 +90,9 @@ export default function useLetterEditor(templateId) {
     handleShare,
     handleFullScreen,
     handleNavigateBack,
-    getHTML
+    getHTML,
+    isShareModalOpen,
+    setIsShareModalOpen,
+    shareUrl,
   };
-} 
+}

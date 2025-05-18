@@ -26,10 +26,13 @@ export default function EditableLetter() {
     hasChanges,
     handleSave,
     handleReset,
-    handleShare,
-    handleFullScreen,
     handleNavigateBack,
     getHTML,
+    handleShare,
+    handleFullScreen,
+    isShareModalOpen,
+    setIsShareModalOpen,
+    shareUrl,
   } = useLetterEditor(templateId);
 
   if (loading) return <LoadingState />;
@@ -40,9 +43,8 @@ export default function EditableLetter() {
     <Layout>
       <div className="flex h-screen bg-gradient-to-br from-indigo-50 via-pink to-pink-100 overflow-x-hidden">
         <div
-          className={`flex flex-col border-r border-indigo-300 transition-all duration-300 ease-in-out overflow-y-auto ${
-            sidebarOpen ? "w-80" : "w-0"
-          }`}
+          className={`flex flex-col border-r border-indigo-300 transition-all duration-300 ease-in-out overflow-y-auto ${sidebarOpen ? "w-80" : "w-0"
+            }`}
         >
           <LetterSidebar
             sidebarOpen={sidebarOpen}
@@ -64,7 +66,11 @@ export default function EditableLetter() {
             sharedUsers={sharedUsers}
             handleShare={handleShare}
             handleFullScreen={handleFullScreen}
+            isShareModalOpen={isShareModalOpen}
+            setIsShareModalOpen={setIsShareModalOpen}
+            shareUrl={shareUrl}
           />
+
 
           <LetterPreview getHTML={getHTML} />
         </main>

@@ -2,7 +2,6 @@ import React from 'react';
 import { Chart as ChartJS, ArcElement, Tooltip, Legend } from 'chart.js';
 import { Doughnut } from 'react-chartjs-2';
 
-// Enregistrer les composants ChartJS nécessaires
 ChartJS.register(ArcElement, Tooltip, Legend);
 
 const ProductSales = () => {
@@ -49,24 +48,20 @@ const ProductSales = () => {
         },
     };
 
-    // Plugin personnalisé pour ajouter des labels de pourcentage sur le graphique
     const percentageLabels = {
         id: 'percentageLabels',
         afterDatasetsDraw(chart) {
             const { ctx, data } = chart;
 
             chart.getDatasetMeta(0).data.forEach((dataPoint, index) => {
-                // Position pour placer les étiquettes
                 const { x, y } = dataPoint.tooltipPosition();
 
-                // Décalage basé sur l'index pour positionner les étiquettes autour du graphique
                 const offsets = [
-                    { x: 30, y: -30 }, // iPhone (en haut à droite)
-                    { x: 60, y: 10 }, // iPad (à droite)
-                    { x: 20, y: 50 }, // iMac (en bas à droite)
+                    { x: 30, y: -30 }, 
+                    { x: 60, y: 10 },
+                    { x: 20, y: 50 },
                 ];
 
-                // Dessiner le fond blanc circulaire
                 ctx.beginPath();
                 ctx.arc(
                     x + offsets[index].x,
@@ -83,7 +78,6 @@ const ProductSales = () => {
                 ctx.fill();
                 ctx.shadowColor = 'transparent';
 
-                // Dessiner le texte
                 ctx.font = 'bold 12px Arial';
                 ctx.fillStyle = '#1F2937';
                 ctx.textAlign = 'center';
@@ -101,9 +95,9 @@ const ProductSales = () => {
         <div>
             <div className='flex justify-between items-center mb-6'>
                 <h2 className='text-xl font-bold text-gray-800'>
-                    Top Product Sales
+                    Ventes des Meilleurs Produits
                 </h2>
-                <button className='text-sm text-blue-500'>View Details</button>
+                <button className='text-sm text-blue-500'>Voir Détails</button>
             </div>
 
             <div className='h-48 relative'>

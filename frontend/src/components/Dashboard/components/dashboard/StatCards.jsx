@@ -10,15 +10,15 @@ import StatCard from './ StatCard';
 const StatCards = () => {
     const stats = [
         {
-            title: 'Total Revenue',
-            value: '$513',
+            title: 'Revenu Total',
+            value: '513€',
             change: 12,
             icon: BanknotesIcon,
             iconBg: 'bg-green-100',
             iconColor: 'text-green-500',
         },
         {
-            title: 'Total Transaction',
+            title: 'Transactions Totales',
             value: '321',
             change: 8,
             icon: ShoppingCartIcon,
@@ -26,7 +26,7 @@ const StatCards = () => {
             iconColor: 'text-yellow-500',
         },
         {
-            title: 'Total Products',
+            title: 'Produits Totaux',
             value: '564',
             change: 13,
             icon: Squares2X2Icon,
@@ -34,7 +34,7 @@ const StatCards = () => {
             iconColor: 'text-red-500',
         },
         {
-            title: 'Total Customer',
+            title: 'Clients Totaux',
             value: '254',
             change: -4,
             icon: UsersIcon,
