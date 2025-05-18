@@ -20,7 +20,6 @@ const Router = () => {
       <Routes>
         <Route path="/" element={<Home />} />
         <Route path="/clash" element={<ClashList />} />
-        <Route path="/about" element={<About />} />
         <Route path="/app/create-ai" element={<ContentGenerator />} />
         <Route path="/signIn" element={<AuthPage />} />
         <Route path="/create-page" element={<PageCore />} />
