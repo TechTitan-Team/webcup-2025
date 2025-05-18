@@ -83,7 +83,7 @@ const clashController = {
             const { id, content, id_user } = req.body;
             const id_page = await clashModel.getFileByUser(parseInt(id), parseInt(id_user))
             const fileName = `page-${Date.now()}.html`;
-            const filePath = path.join(__dirname, '../../public', fileName);
+            const filePath = path.join(__dirname, '../../../public', fileName);
             const url = `/${fileName}`; // URL accessible publiquement
 
             // Écrire le fichier dans le dossier public
