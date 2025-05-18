@@ -95,6 +95,15 @@ const Navigation = () => {
             >
               Contact
             </a>
+            <a
+              href="https://bff.ecoindex.fr/redirect/?url=https://techtitan.madagascar.webcup.hodi.host"
+              target="_blank"
+            >
+              <img
+                src="https://bff.ecoindex.fr/badge/?theme=dark&url=https://techtitan.madagascar.webcup.hodi.host"
+                alt="Ecoindex Badge"
+              />
+            </a>
             <button
               onClick={() => navigate("/signIn")}
               className="magnetic-btn bg-gradient-to-r from-indigo-400 to-indigo-500 text-white px-4 py-2 rounded-md text-xs uppercase tracking-wider font-medium hover:shadow-md hover:shadow-indigo-200 transition-all duration-300"

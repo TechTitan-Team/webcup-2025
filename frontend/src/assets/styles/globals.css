@@ -19,8 +19,8 @@ body {
   cursor: pointer;
 }
 
-.home-page {
-  background-image: url('../images/bg-col.png');
+.the-end-hero {
+  background-image: url('../images/bg.png');
   background-size: cover;  
   background-position: center;
   background-repeat: no-repeat; 

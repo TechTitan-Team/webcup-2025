@@ -1,25 +1,34 @@
 export const categories = [
-    { id: "all", name: "Tout" },
-    { id: "professional", name: "Professionnel" },
-    { id: "creative", name: "Créatif" },
-    { id: "personal", name: "Personnel" },
-    { id: "digital", name: "Numérique" },
+    { id: 'all', name: 'Tout' },
+    { id: 'professional', name: 'Professionnel' },
+    { id: 'creative', name: 'Créatif' },
+    { id: 'personal', name: 'Personnel' },
+    { id: 'digital', name: 'Numérique' },
 ];
 
-const url = "http://localhost:5173/"
-
+import image1 from '../../public/image1.png';
+import image2 from '../../public/image2.png';
+import image3 from '../../public/image3.png';
+import image4 from '../../public/image4.png';
+import image5 from '../../public/image5.png';
+import image6 from '../../public/image6.png';
+import image7 from '../../public/image7.png';
+import image8 from '../../public/image8.png';
+import image9 from '../../public/image9.png';
+import image10 from '../../public/image10.png';
+import image11 from '../../public/image11.png';
+import image12 from '../../public/image12.png';
 export const templates = [
     {
         id: 1,
-        title: "Lettre de démission dramatique",
-        description: "Pour quitter votre emploi avec impact et émotion",
-        category: "professional",
-        author: "Figma",
+        title: 'Lettre de démission dramatique',
+        description: 'Pour quitter votre emploi avec impact et émotion',
+        category: 'professional',
+        author: 'Figma',
         likes: 1340,
         views: 5400,
-        image:
-            "https://images.unsplash.com/photo-1484807352052-23338990c6c6?q=80&w=1470&auto=format&fit=crop",
-        defaultTitle: "Ma démission",
+        image: image1,
+        defaultTitle: 'Ma démission',
         defaultContent:
             "Après mûre réflexion, je dois vous annoncer ma décision de quitter mes fonctions. Ce n'est pas une décision prise à la légère, mais le résultat d'une longue période de réflexion. Je vous remercie pour les opportunités qui m'ont été offertes durant mon parcours au sein de l'entreprise.",
         htmlTemplate: (title, content) => `
@@ -81,7 +90,9 @@ export const templates = [
           </head>
           <body>
               <div class="letter">
-                  <div class="header">Paris, le ${new Date().toLocaleDateString("fr-FR")}</div>
+                  <div class="header">Paris, le ${new Date().toLocaleDateString(
+                      'fr-FR'
+                  )}</div>
                   <h1 class="title">${title}</h1>
                   <p>${content}</p>
                   <div class="signature">Signature</div>
@@ -92,15 +103,14 @@ export const templates = [
     },
     {
         id: 2,
-        title: "Adieu au projet abandonné",
+        title: 'Adieu au projet abandonné',
         description: "Dites au revoir à ce projet qui n'a jamais vu le jour",
-        category: "creative",
-        author: "Figma",
+        category: 'creative',
+        author: 'Figma',
         likes: 880,
         views: 2100,
-        image:
-            "https://images.unsplash.com/photo-1484589065579-248aad0d8b13?q=80&w=959&auto=format&fit=crop",
-        defaultTitle: "Adieu, mon beau projet",
+        image: image2,
+        defaultTitle: 'Adieu, mon beau projet',
         defaultContent:
             "Tu étais plein de promesses, d'ambitions et de rêves. Mais parfois, la vie nous emmène ailleurs. Ce n'est pas par manque d'amour que je te laisse partir, mais par nécessité. Peut-être nous retrouverons-nous un jour, sous une autre forme, dans un autre temps.",
         htmlTemplate: (title, content) => `
@@ -161,7 +171,9 @@ export const templates = [
               <div class="container">
                   <h1 class="title">${title}</h1>
                   <div class="content">${content}</div>
-                  <div class="footer">Écrit le ${new Date().toLocaleDateString("fr-FR")}</div>
+                  <div class="footer">Écrit le ${new Date().toLocaleDateString(
+                      'fr-FR'
+                  )}</div>
               </div>
           </body>
           </html>
@@ -169,15 +181,14 @@ export const templates = [
     },
     {
         id: 3,
-        title: "Rupture avec classe",
-        description: "Une façon élégante de mettre fin à une relation",
-        category: "personal",
-        author: "Figma",
+        title: 'Rupture avec classe',
+        description: 'Une façon élégante de mettre fin à une relation',
+        category: 'personal',
+        author: 'Figma',
         likes: 732,
         views: 2100,
-        image:
-            "https://images.unsplash.com/photo-1516205651411-aef33a44f7c2?q=80&w=1528&auto=format&fit=crop",
-        defaultTitle: "Il est temps de nous dire au revoir",
+        image: image3,
+        defaultTitle: 'Il est temps de nous dire au revoir',
         defaultContent:
             "Nos chemins se sont croisés, nous avons partagé des moments précieux, mais aujourd'hui, je sens qu'il est temps pour nous de prendre des directions différentes. Je garderai toujours en moi le souvenir de ce que nous avons vécu ensemble.",
         htmlTemplate: (title, content) => `
@@ -245,17 +256,16 @@ export const templates = [
     },
     {
         id: 4,
-        title: "Au revoir à mon équipe",
-        description: "Un message sincère pour vos anciens collègues",
-        category: "professional",
-        author: "Figma",
+        title: 'Au revoir à mon équipe',
+        description: 'Un message sincère pour vos anciens collègues',
+        category: 'professional',
+        author: 'Figma',
         likes: 165,
         views: 725,
-        image:
-            "https://images.unsplash.com/photo-1521737604893-d14cc237f11d?q=80&w=1484&auto=format&fit=crop",
-        defaultTitle: "Merci pour cette aventure",
+        image: image4,
+        defaultTitle: 'Merci pour cette aventure',
         defaultContent:
-            "Chers collègues, après ces années passées ensemble, il est temps pour moi de partir vers de nouveaux horizons. Je tiens à vous remercier pour votre soutien, votre professionnalisme et tous ces moments partagés qui ont fait de cette expérience une période enrichissante de ma vie.",
+            'Chers collègues, après ces années passées ensemble, il est temps pour moi de partir vers de nouveaux horizons. Je tiens à vous remercier pour votre soutien, votre professionnalisme et tous ces moments partagés qui ont fait de cette expérience une période enrichissante de ma vie.',
         htmlTemplate: (title, content) => `
           <!DOCTYPE html>
           <html lang="fr">
@@ -317,7 +327,9 @@ export const templates = [
               <div class="container">
                   <div class="header">
                       <h1 class="title">${title}</h1>
-                      <div class="date">${new Date().toLocaleDateString("fr-FR")}</div>
+                      <div class="date">${new Date().toLocaleDateString(
+                          'fr-FR'
+                      )}</div>
                   </div>
                   <div class="content">${content}</div>
                   <div class="signature">
@@ -331,15 +343,14 @@ export const templates = [
     },
     {
         id: 5,
-        title: "Quitter les réseaux sociaux",
-        description: "Votre dernier post avant de disparaître",
-        category: "digital",
-        author: "Joey Banks",
+        title: 'Quitter les réseaux sociaux',
+        description: 'Votre dernier post avant de disparaître',
+        category: 'digital',
+        author: 'Joey Banks',
         likes: 160,
         views: 477,
-        image:
-            "https://images.unsplash.com/photo-1611162617213-7d7a39e9b1d7?q=80&w=1374&auto=format&fit=crop",
-        defaultTitle: "Déconnexion volontaire",
+        image: image5,
+        defaultTitle: 'Déconnexion volontaire',
         defaultContent:
             "Après des années passées sur les réseaux sociaux, j'ai décidé de prendre du recul. Ce n'est pas un au revoir définitif, mais plutôt une pause nécessaire pour me reconnecter avec le monde réel. Merci à tous ceux qui ont partagé ce voyage numérique avec moi.",
         htmlTemplate: (title, content) => `
@@ -440,7 +451,9 @@ export const templates = [
                       <div class="title">username</div>
                       <div class="caption">${content}</div>
                   </div>
-                  <div class="footer">Publié le ${new Date().toLocaleDateString("fr-FR")}</div>
+                  <div class="footer">Publié le ${new Date().toLocaleDateString(
+                      'fr-FR'
+                  )}</div>
               </div>
           </body>
           </html>
@@ -450,12 +463,11 @@ export const templates = [
         id: 6,
         title: "Fin d'une ère",
         description: "Pour marquer la fin d'une période importante",
-        category: "creative",
-        author: "Joey Banks",
+        category: 'creative',
+        author: 'Joey Banks',
         likes: 142,
         views: 379,
-        image:
-            "https://images.unsplash.com/photo-1501139083538-0139583c060f?q=80&w=1470&auto=format&fit=crop",
+        image: image6,
         defaultTitle: "La fin d'un chapitre",
         defaultContent:
             "Toutes les bonnes choses ont une fin. Ce chapitre de ma vie se termine, mais un nouveau commence. Je suis reconnaissant pour les leçons apprises, les personnes rencontrées et les expériences vécues. C'est avec émotion que je tourne cette page, prêt à écrire la suite de mon histoire.",
@@ -519,7 +531,9 @@ export const templates = [
               <div class="container">
                   <h1 class="title">${title}</h1>
                   <div class="content">${content}</div>
-                  <div class="date">${new Date().toLocaleDateString("fr-FR")}</div>
+                  <div class="date">${new Date().toLocaleDateString(
+                      'fr-FR'
+                  )}</div>
               </div>
           </body>
           </html>
@@ -527,14 +541,13 @@ export const templates = [
     },
     {
         id: 7,
-        title: "Message passif-agressif",
-        description: "Quand vous partez mais voulez laisser une trace",
-        category: "personal",
-        author: "MUI",
+        title: 'Message passif-agressif',
+        description: 'Quand vous partez mais voulez laisser une trace',
+        category: 'personal',
+        author: 'MUI',
         likes: 92,
         views: 331,
-        image:
-            "https://images.unsplash.com/photo-1543610892-0b1f7e6d8ac1?q=80&w=1374&auto=format&fit=crop",
+        image: image7,
         defaultTitle: "Puisque c'est comme ça...",
         defaultContent:
             "Je pensais qu'on avait quelque chose de spécial, mais visiblement je me trompais. C'est toujours intéressant de découvrir à quel point on peut se méprendre sur les gens. Bonne continuation avec vos choix, j'espère qu'ils vous mèneront là où vous le souhaitez.",
@@ -612,15 +625,14 @@ export const templates = [
     },
     {
         id: 8,
-        title: "Claquement de porte virtuel",
-        description: "Faites du bruit même en ligne",
-        category: "digital",
-        author: "Toni Gemayel",
+        title: 'Claquement de porte virtuel',
+        description: 'Faites du bruit même en ligne',
+        category: 'digital',
+        author: 'Toni Gemayel',
         likes: 52,
         views: 298,
-        image:
-            "https://images.unsplash.com/photo-1526374965328-7f61d4dc18c5?q=80&w=1470&auto=format&fit=crop",
-        defaultTitle: "DÉCONNEXION",
+        image: image8,
+        defaultTitle: 'DÉCONNEXION',
         defaultContent:
             "J'ai donné suffisamment de mon temps et de mon énergie à cet espace numérique. Il est temps pour moi de me concentrer sur le monde réel, sur des connexions authentiques plutôt que ces interactions superficielles. Ne cherchez pas à me contacter ici, je ne reviendrai pas.",
         htmlTemplate: (title, content) => `
@@ -707,7 +719,9 @@ export const templates = [
                       &gt; Déconnexion complète dans 3... 2... 1...<br />
                       &gt; DÉCONNECTÉ<span class="cursor"></span>
                   </div>
-                  <div class="timestamp">${new Date().toLocaleTimeString("fr-FR")} - ${new Date().toLocaleDateString("fr-FR")}</div>
+                  <div class="timestamp">${new Date().toLocaleTimeString(
+                      'fr-FR'
+                  )} - ${new Date().toLocaleDateString('fr-FR')}</div>
               </div>
           </body>
           </html>
@@ -715,17 +729,16 @@ export const templates = [
     },
     {
         id: 9,
-        title: "Annonce de départ en retraite",
-        description: "Un message chaleureux pour annoncer votre retraite",
-        category: "professional",
-        author: "Figma",
+        title: 'Annonce de départ en retraite',
+        description: 'Un message chaleureux pour annoncer votre retraite',
+        category: 'professional',
+        author: 'Figma',
         likes: 500,
         views: 1200,
-        image:
-            "https://images.unsplash.com/photo-1504384308090-c894fdcc538d?q=80&w=1470&auto=format&fit=crop",
-        defaultTitle: "Mon départ à la retraite",
+        image: image9,
+        defaultTitle: 'Mon départ à la retraite',
         defaultContent:
-            "Après de nombreuses années de travail, il est temps pour moi de tourner une page importante de ma vie. Je tiens à remercier tous mes collègues pour leur soutien et leur amitié tout au long de cette aventure professionnelle.",
+            'Après de nombreuses années de travail, il est temps pour moi de tourner une page importante de ma vie. Je tiens à remercier tous mes collègues pour leur soutien et leur amitié tout au long de cette aventure professionnelle.',
         htmlTemplate: (title, content) => `
       <!DOCTYPE html>
       <html lang="fr">
@@ -766,7 +779,7 @@ export const templates = [
       <body>
           <h1>${title}</h1>
           <p>${content}</p>
-          <div class="footer">${new Date().toLocaleDateString("fr-FR")}</div>
+          <div class="footer">${new Date().toLocaleDateString('fr-FR')}</div>
       </body>
       </html>
     `,
@@ -774,14 +787,14 @@ export const templates = [
     {
         id: 10,
         title: "Fin d'une collaboration artistique",
-        description: "Exprimer la fin d'une collaboration créative avec élégance",
-        category: "creative",
-        author: "Figma",
+        description:
+            "Exprimer la fin d'une collaboration créative avec élégance",
+        category: 'creative',
+        author: 'Figma',
         likes: 320,
         views: 900,
-        image:
-            "https://images.unsplash.com/photo-1494526585095-c41746248156?q=80&w=1470&auto=format&fit=crop",
-        defaultTitle: "Clôture de notre collaboration",
+        image: image10,
+        defaultTitle: 'Clôture de notre collaboration',
         defaultContent:
             "Notre collaboration a été une source d'inspiration et de croissance. Bien que nos chemins se séparent aujourd'hui, je reste fier de ce que nous avons accompli ensemble et je vous souhaite le meilleur pour vos projets futurs.",
         htmlTemplate: (title, content) => `
@@ -824,7 +837,7 @@ export const templates = [
       <body>
           <h1>${title}</h1>
           <p>${content}</p>
-          <div class="footer">${new Date().toLocaleDateString("fr-FR")}</div>
+          <div class="footer">${new Date().toLocaleDateString('fr-FR')}</div>
       </body>
       </html>
     `,
@@ -832,14 +845,13 @@ export const templates = [
     {
         id: 11,
         title: "Lettre d'excuses personnelle",
-        description: "Une lettre sincère pour demander pardon",
-        category: "personal",
-        author: "Figma",
+        description: 'Une lettre sincère pour demander pardon',
+        category: 'personal',
+        author: 'Figma',
         likes: 450,
         views: 1150,
-        image:
-            "https://images.unsplash.com/photo-1508214751196-bcfd4ca60f91?q=80&w=1470&auto=format&fit=crop",
-        defaultTitle: "Je suis désolé(e)",
+        image: image11,
+        defaultTitle: 'Je suis désolé(e)',
         defaultContent:
             "Je tiens à te présenter mes excuses les plus sincères. Je regrette profondément mes actions et les conséquences qu'elles ont pu avoir. J'espère que tu pourras me pardonner et que nous pourrons avancer ensemble.",
         htmlTemplate: (title, content) => `
@@ -889,15 +901,15 @@ export const templates = [
     },
     {
         id: 12,
-        title: "Annonce de fermeture de blog",
-        description: "Un message pour informer vos lecteurs de la fin de votre blog",
-        category: "digital",
-        author: "Joey Banks",
+        title: 'Annonce de fermeture de blog',
+        description:
+            'Un message pour informer vos lecteurs de la fin de votre blog',
+        category: 'digital',
+        author: 'Joey Banks',
         likes: 200,
         views: 580,
-        image:
-            "https://images.unsplash.com/photo-1498050108023-c5249f4df085?q=80&w=1470&auto=format&fit=crop",
-        defaultTitle: "Merci et au revoir",
+        image: image12,
+        defaultTitle: 'Merci et au revoir',
         defaultContent:
             "Après mûre réflexion, j'ai décidé de fermer ce blog. Ce fut une aventure incroyable, pleine de partage et d'apprentissages. Je remercie tous mes lecteurs pour leur fidélité et leur soutien. Ce n'est qu'un au revoir, peut-être à bientôt dans un autre espace.",
         htmlTemplate: (title, content) => `
@@ -949,7 +961,9 @@ export const templates = [
           <div class="overlay">
               <h1>${title}</h1>
               <p>${content}</p>
-              <div class="footer">${new Date().toLocaleDateString("fr-FR")}</div>
+              <div class="footer">${new Date().toLocaleDateString(
+                  'fr-FR'
+              )}</div>
           </div>
       </body>
       </html>
