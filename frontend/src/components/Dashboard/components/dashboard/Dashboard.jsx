@@ -13,7 +13,7 @@ const Dashboards = () => {
                 <TimeFilter />
                 <div className='flex space-x-3'>
                     <button className='px-6 py-2 border border-gray-300 rounded-full flex items-center space-x-2'>
-                        <span>Filter</span>
+                        <span>Filtrer</span>
                         <svg
                             className='w-4 h-4'
                             fill='none'
@@ -29,7 +29,7 @@ const Dashboards = () => {
                         </svg>
                     </button>
                     <button className='px-6 py-2 border border-gray-300 rounded-full'>
-                        Clear
+                        Effacer
                     </button>
                 </div>
             </div>

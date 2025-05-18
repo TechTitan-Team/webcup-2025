@@ -27,14 +27,14 @@ ChartJS.register(
 );
 
 const RevenueChart = () => {
-    const labels = ['Sun', 'Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat'];
+    const labels = ['Dim', 'Lun', 'Mar', 'Mer', 'Jeu', 'Ven', 'Sam'];
 
     const data = {
         labels,
         datasets: [
             {
                 type: 'bar',
-                label: 'Revenue',
+                label: 'Revenu',
                 data: [300, 450, 550, 650, 400, 570, 280],
                 backgroundColor: '#7C3AED', // Violet
                 borderRadius: 4,
@@ -42,7 +42,7 @@ const RevenueChart = () => {
             },
             {
                 type: 'line',
-                label: 'Trend',
+                label: 'Tendance',
                 data: [320, 420, 510, 600, 380, 520, 300],
                 borderColor: '#EF4444', // Rouge
                 borderWidth: 2,
@@ -91,7 +91,7 @@ const RevenueChart = () => {
                         return `${context[0].label}`;
                     },
                     label: (context) => {
-                        return `Total Revenue: $${context.raw}`;
+                        return `Revenu Total: ${context.raw} €`;
                     },
                 },
             },
@@ -119,17 +119,17 @@ const RevenueChart = () => {
         <div>
             <div className='flex justify-between items-center mb-6'>
                 <h2 className='text-xl font-bold text-gray-800'>
-                    Revenue Growth
+                    Croissance des Revenus
                 </h2>
                 <div className='flex space-x-2'>
                     <button className='px-4 py-1 bg-gray-100 rounded-full text-sm text-gray-800 font-medium'>
-                        Day
+                        Jour
                     </button>
                     <button className='px-4 py-1 bg-white border border-gray-200 rounded-full text-sm text-gray-800 font-medium'>
-                        Weekly
+                        Hebdomadaire
                     </button>
                     <button className='px-4 py-1 bg-white border border-gray-200 rounded-full text-sm text-gray-800 font-medium'>
-                        Monthly
+                        Mensuel
                     </button>
                 </div>
             </div>

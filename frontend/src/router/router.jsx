@@ -1,6 +1,5 @@
 import { BrowserRouter, Route, Routes } from "react-router-dom";
 import Home from "../components/Home/Home";
-import About from "../components/About/About";
 import AuthPage from "../components/Auth/AuthPage";
 import PageCore from "../components/PageCore/PageCore";
 import ContentGenerator from "../components/ContentGenerator/ContentGenerator";
@@ -26,7 +25,6 @@ const Router = () => {
         <Route path="/clash" element={<ClashList />} />
         <Route path="/clash/view/:id" element={<DualIframeComponent />} />
         <Route path="/clash/:templateId" element={<EditableClash />} />
-        <Route path="/about" element={<About />} />
         <Route path="/app/create-ai" element={<ContentGenerator />} />
         <Route path="/signIn" element={<AuthPage />} />
         <Route path="/create-page" element={<PageCore />} />

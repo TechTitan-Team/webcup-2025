@@ -11,6 +11,7 @@ import {
 import { v4 as uuidv4 } from "uuid";
 import sendData from "../../hooks/sendHTML";
 import Header from "../Layout/Header/Header";
+import { useNavigate } from "react-router-dom";
 
 const CanvaEditor = () => {
   const [elements, setElements] = useState([]);
@@ -28,6 +29,7 @@ const CanvaEditor = () => {
   const [lockAspectRatio, setLockAspectRatio] = useState(false);
   const [imageCache, setImageCache] = useState({});
   const [textEditorVisible, setTextEditorVisible] = useState(false);
+  const navigate = useNavigate();
   const [editingText, setEditingText] = useState({
     id: null,
     text: "",
@@ -909,9 +911,6 @@ const CanvaEditor = () => {
 
   return (
     <div className="relative h-screen w-screen overflow-hidden bg-gray-100 text-gray-500">
-      <div className="fixed w-full top-0 z-10">
-        <Header />
-      </div>
       {/* Hidden file inputs */}
       <input
         type="file"
@@ -1434,6 +1433,13 @@ const CanvaEditor = () => {
             />
           )}
         </svg>
+      </button>
+      <button
+        onClick={() => navigate(-1)}
+        className="absolute top-4 left-4 z-20 bg-gray-800 text-white py-2 px-4 rounded-full shadow-lg hover:bg-gray-700"
+        //title={toolbarVisible ? "Hide Toolbar" : "Show Toolbar"}
+      >
+        Retour
       </button>
 
       {/* Element properties panel - only shown when an element is selected */}

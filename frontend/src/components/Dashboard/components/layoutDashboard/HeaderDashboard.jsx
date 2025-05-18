@@ -17,13 +17,13 @@ const Header = () => {
     return (
         <div className='sticky top-0 left-0 w-full z-50 flex justify-between items-center px-12 py-6 bg-gray-100'>
             <div>
-                <Link to='/dashboard' className='flex items-center'>
-                    <img
-                        src={Logo}
-                        alt='TheEndPage Logo'
-                        className="h-14 w-14 rounded-full object-cover border-2 border-gray-300 shadow-sm" 
-                    />
-                </Link>
+                <a
+                    href='#'
+                    className='text-2xl font-display font-bold tracking-wider'
+                >
+                    The<span className='text-indigo-500'>End</span>
+                    <span className='text-indigo-400'>.page</span>
+                </a>
             </div>
 
             <div className='flex items-center gap-14'>

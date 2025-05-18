@@ -2,7 +2,7 @@ import React from 'react';
 import { useParams } from 'react-router-dom';
 import Activities from '../Activities/Activities';
 import ProfileSidebar from '../ProfileSidebar/ProfileSidebar';
-import Templates from '../ProfileForm/ProfileForm';
+import Templates from '../Template/Template';
 
 const UserProfile = () => {
     const { id } = useParams();
