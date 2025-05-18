@@ -32,7 +32,7 @@ export default function ContentGenerator() {
   };
 
   const handleNavigateBack = () => {
-    navigate("/dashboard");
+    navigate("/list-template");
   };
 
   const handleFullScreen = () => {

@@ -68,10 +68,10 @@ export default function useLetterEditor(templateId) {
           "Vous avez des modifications non enregistrées. Êtes-vous sûr de vouloir quitter ?"
         )
       ) {
-        navigate("/app");
+        navigate("/list-template");
       }
     } else {
-      navigate("/app");
+      navigate("/list-template");
     }
   };
 

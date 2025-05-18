@@ -12,10 +12,8 @@ const Home = () => {
         <Header />
         <Hero />
         <Advantage />
-      <AboutSection/>
-
+        <AboutSection />
       </div>
-      
     </Layout>
   );
 };

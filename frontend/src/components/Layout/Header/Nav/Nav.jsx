@@ -20,8 +20,16 @@ const navItems = [
     href: "/clash",
   },
   {
-    title: "Créer",
+    title: "Créer un template personnalisé",
     href: "/create-page",
+  },
+  {
+    title: "Générer un template",
+    href: "/app/create-ai",
+  },
+  {
+    title: "Maze Game",
+    href: "/maze-game",
   },
   {
     title: "Se connecter",
